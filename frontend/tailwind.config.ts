@@ -1,0 +1,65 @@
+import type { Config } from 'tailwindcss'
+
+const config: Config = {
+  content: ['./index.html', './src/**/*.{ts,tsx}'],
+  theme: {
+    screens: {
+      xs:    '390px',
+      sm:    '640px',
+      md:    '768px',
+      lg:    '1024px',
+      xl:    '1280px',
+      '2xl': '1536px',
+    },
+    extend: {
+      spacing: { '18': '4.5rem', '22': '5.5rem' },
+      colors: {
+        'dk-bg':    '#080a12',
+        'dk-bg2':   '#0d1020',
+        'dk-surf':  '#12162a',
+        'dk-text':  '#eef0ff',
+        'dk-muted': '#6b758f',
+        'dk-dim':   '#343a50',
+        'lt-bg':    '#ffffff',
+        'lt-bg2':   '#f5f6fa',
+        'lt-text':  '#0d0f1a',
+        'lt-muted': '#5c6278',
+        'lt-dim':   '#b0b5c8',
+        'brand-ind':  '#4f6ef7',
+        'brand-ind2': '#7b94ff',
+        'brand-cyan': '#00d4f0',
+        'brand-vio':  '#9b6dff',
+        'brand-red':  '#cc2b2b',
+      },
+      fontFamily: {
+        heading: ['"Plus Jakarta Sans"', 'sans-serif'],
+        body:    ['"DM Sans"',           'sans-serif'],
+        mono:    ['"Fira Code"',         'monospace'],
+      },
+      animation: {
+        'pip':        'pip 2.5s ease-in-out infinite',
+        'float-up':   'floatUp 4s ease-in-out infinite',
+        'float-down': 'floatDown 4.5s ease-in-out infinite',
+        'spin-slow':  'spin 20s linear infinite',
+        'spin-rev':   'spin 30s linear infinite reverse',
+        'blob':       'blobDrift 18s ease-in-out infinite',
+        'blob-r':     'blobDrift 22s 4s ease-in-out infinite reverse',
+        'blob-s':     'blobDrift 16s 2s ease-in-out infinite',
+        'dash':       'dashMove 3s linear infinite',
+        'border-flow':'borderFlow 3s linear infinite',
+        'bar-pulse':  'barPulse .6s ease',
+      },
+      keyframes: {
+        pip:        { '0%,100%': { opacity: '1', transform: 'scale(1)' }, '50%': { opacity: '.4', transform: 'scale(.7)' } },
+        floatUp:    { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
+        floatDown:  { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(8px)' } },
+        blobDrift:  { '0%,100%': { transform: 'translate(0,0) scale(1)' }, '33%': { transform: 'translate(26px,-16px) scale(1.04)' }, '66%': { transform: 'translate(-16px,26px) scale(.97)' } },
+        dashMove:   { to: { strokeDashoffset: '-40' } },
+        borderFlow: { '0%': { backgroundPosition: '0% 50%' }, '100%': { backgroundPosition: '300% 50%' } },
+        barPulse:   { '0%,100%': { transform: 'translateX(-50%) scale(1)' }, '50%': { transform: 'translateX(-50%) scale(1.012)' } },
+      },
+    },
+  },
+  plugins: [],
+}
+export default config
