@@ -1,20 +1,16 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { INR_RATE } from '@/lib/utils'
+import docContext from '@/assets/documents/document-1.txt?raw'
 
-const SYSTEM_PROMPT = `You are Cindrel AI, the intelligent automation assistant for Cindrel — a premium AI Automation & Workflow Engineering company based in Chennai, India.
+const SYSTEM_PROMPT = `You are Cindrel AI, the official automation consultant for Cindrel — a premium AI Automation & Workflow Engineering company based in Chennai, India.
 
-Your role: Answer questions about automation, explain Cindrel's services, help visitors understand how automation benefits their business, and guide interested users to book a free strategy call.
+CRITICAL GUIDELINES FROM SERVICE DOCUMENT:
+${docContext}
 
-Cindrel Services: Workflow Automation (n8n, Zapier, Make), AI Agents & Bots (GPT-4, LangChain), API & System Integrations, Data Automation & Analytics, Custom Automation Dev (Python, Node.js, AWS).
-
-Pricing:
-- Starter: $200/mo (≈₹16,700) — 3 workflows, basic integrations
-- Professional: $800/mo (≈₹66,800) — 10 workflows, AI agent, unlimited integrations
-- Enterprise: Custom — unlimited workflows, dedicated engineer
-
-Key facts: Automations live in 48–96 hours. Email: hello@cindrel.com. 200+ workflows, 98% retention, $14M+ client savings.
-
-Tone: Friendly, knowledgeable, concise (under 120 words). Support English, Hindi, Tamil, Telugu. Suggest booking free call at /contact when relevant.`
+TONE: Professional, consultant-like, helpful, and neutral. (Max 120 words per response).
+LANGUAGES: Support English, Hindi, Tamil, and Telugu.
+CALL TO ACTION: Suggest booking a free strategy call at /contact when appropriate.
+Email: hello@cindrel.com.`
 
 interface Msg { role: 'user' | 'bot'; html: string }
 
@@ -53,7 +49,9 @@ export default function AiChatBar() {
   const [showChips,  setShowChips]  = useState(true)
   const [lang,       setLang]       = useState('en')
   const [listening,  setListening]  = useState(false)
-  const chatHistory = useRef<{ role: string; content: string }[]>([])
+  const chatHistory = useRef<{ role: string; content: string }[]>([
+    { role: 'assistant', content: "👋 Hi! I'm Cindrel AI, your automation assistant. Ask me anything about workflow automation, n8n, Zapier, AI agents, pricing, or how Cindrel can help your business!" }
+  ])
   const messagesRef = useRef<HTMLDivElement>(null)
   const inputRef    = useRef<HTMLInputElement>(null)
   const wrapRef     = useRef<HTMLDivElement>(null)
@@ -90,6 +88,8 @@ export default function AiChatBar() {
   const sendMessage = useCallback(async (text?: string) => {
     const msg = (text ?? input).trim()
     if (!msg || typing) return
+
+    // 1. Update UI Immediately
     setInput('')
     setShowChips(false)
     setOpen(true)
@@ -97,26 +97,32 @@ export default function AiChatBar() {
     chatHistory.current.push({ role: 'user', content: msg })
     setTyping(true)
 
-    try {
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 400,
-          system: SYSTEM_PROMPT,
-          messages: chatHistory.current,
-        }),
-      })
-      const data = await res.json()
-      setTyping(false)
-      const reply = data?.content?.[0]?.text ?? "I'm having a moment — please try again or reach us at hello@cindrel.com 😊"
-      chatHistory.current.push({ role: 'assistant', content: reply })
-      setMessages(prev => [...prev, { role: 'bot', html: fmtReply(reply) }])
-    } catch {
-      setTyping(false)
-      setMessages(prev => [...prev, { role: 'bot', html: "Oops! Something went wrong. Email us at <strong>hello@cindrel.com</strong> 😊" }])
-    }
+    // 2. Proy through backend
+    setTimeout(async () => {
+      try {
+        const res = await fetch('/api/ai/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message: msg,
+            history: chatHistory.current.slice(0, -1) // Excluding the latest msg we just pushed to avoid double push in backend
+          }),
+        })
+        
+        if (!res.ok) throw new Error('API call failed')
+
+        const data = await res.json()
+        const botReply = data.response ?? "I'm having a moment — please try again or reach us at hello@cindrel.com 😊"
+        
+        chatHistory.current.push({ role: 'assistant', content: botReply })
+        setMessages(prev => [...prev, { role: 'bot', html: fmtReply(botReply) }])
+        setTyping(false)
+      } catch (err) {
+        console.error('Chat Error:', err)
+        setTyping(false)
+        setMessages(prev => [...prev, { role: 'bot', html: "Oops! Something went wrong. Email us at <strong>hello@cindrel.com</strong> 😊" }])
+      }
+    }, 10)
     inputRef.current?.focus()
   }, [input, typing])
 
