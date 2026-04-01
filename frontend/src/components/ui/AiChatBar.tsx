@@ -85,7 +85,7 @@ export default function AiChatBar() {
     return () => clearTimeout(t)
   }, [])
 
-  const sendMessage = useCallback(async (text?: string) => {
+  const sendMessage = useCallback((text?: string) => {
     const msg = (text ?? input).trim()
     if (!msg || typing) return
 
@@ -97,16 +97,18 @@ export default function AiChatBar() {
     chatHistory.current.push({ role: 'user', content: msg })
     setTyping(true)
 
-    // 2. Proxy through backend
-    setTimeout(async () => {
+    // 2. Local fetch handler inside the callback
+    const callBackend = async () => {
       try {
         const apiUrl = import.meta.env.VITE_API_URL || '';
-        const res = await fetch(`${apiUrl}/ai/chat`.replace(/\/\/ai/, '/ai'), {
+        const fetchUrl = `${apiUrl}/ai/chat`.replace(/\/+ai/, '/ai');
+        
+        const res = await fetch(fetchUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             message: msg,
-            history: chatHistory.current.slice(0, -1) // Excluding the latest msg we just pushed to avoid double push in backend
+            history: chatHistory.current.slice(0, -1)
           }),
         })
         
@@ -117,13 +119,15 @@ export default function AiChatBar() {
         
         chatHistory.current.push({ role: 'assistant', content: botReply })
         setMessages(prev => [...prev, { role: 'bot', html: fmtReply(botReply) }])
-        setTyping(false)
       } catch (err) {
         console.error('Chat Error:', err)
-        setTyping(false)
         setMessages(prev => [...prev, { role: 'bot', html: "Oops! Something went wrong. Email us at <strong>hello@cindrel.com</strong> 😊" }])
+      } finally {
+        setTyping(false)
       }
-    }, 10)
+    }
+
+    callBackend()
     inputRef.current?.focus()
   }, [input, typing])
 
