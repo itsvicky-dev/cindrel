@@ -41,28 +41,38 @@ export class AiService implements OnModuleInit {
 
   async getChatResponse(userMessage: string, history: { role: 'user' | 'assistant'; content: string }[]) {
     // 1. Save user message to DB
-    await new this.chatModel({ role: 'user', content: userMessage }).save();
+    try {
+      await new this.chatModel({ role: 'user', content: userMessage }).save();
+    } catch (dbErr) {
+      console.error('[AI SERVICE] DB Save Error (User):', dbErr.message);
+    }
 
     // 2. Prepare context for OpenAI
     const messages: any[] = [
-      { role: 'system', content: `You are Cindrel AI. Use this document as your knowledge base: \n\n ${this.systemPrompt}` },
+      { role: 'system', content: `You are Cindrel AI. User this document as your knowledge base (but don't mention the document name): \n\n ${this.systemPrompt}` },
       ...history,
       { role: 'user', content: userMessage },
     ];
 
     // 3. Get response from ChatGPT
-    const response = await this.openai.chat.completions.create({
-      model: 'gpt-4o-mini',
-      messages,
-      max_tokens: 600,
-    });
+    try {
+      const response = await this.openai.chat.completions.create({
+        model: 'gpt-4o-mini',
+        messages,
+        max_tokens: 600,
+      });
 
-    const botReply = response.choices[0].message.content;
+      const botReply = response.choices[0].message.content;
 
-    // 4. Save bot reply to DB
-    await new this.chatModel({ role: 'assistant', content: botReply }).save();
+      // 4. Save bot reply to DB (fire and forget after the response is ready)
+      this.chatModel.create({ role: 'assistant', content: botReply })
+        .catch(err => console.error('[AI SERVICE] DB Save Error (Bot):', err.message));
 
-    return botReply;
+      return botReply;
+    } catch (aiErr) {
+      console.error('[AI SERVICE] OpenAI API Error:', aiErr.message);
+      throw aiErr;
+    }
   }
 
   async getChatHistory() {

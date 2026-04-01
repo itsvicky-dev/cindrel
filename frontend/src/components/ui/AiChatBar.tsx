@@ -97,10 +97,11 @@ export default function AiChatBar() {
     chatHistory.current.push({ role: 'user', content: msg })
     setTyping(true)
 
-    // 2. Proy through backend
+    // 2. Proxy through backend
     setTimeout(async () => {
       try {
-        const res = await fetch('/api/ai/chat', {
+        const apiUrl = import.meta.env.VITE_API_URL || '';
+        const res = await fetch(`${apiUrl}/ai/chat`.replace(/\/\/ai/, '/ai'), {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
