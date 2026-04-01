@@ -7,6 +7,12 @@ async function bootstrap() {
 
   app.setGlobalPrefix('api');
 
+  // Request Logger Middleware
+  app.use((req, res, next) => {
+    console.log(`[REQUEST] ${req.method} ${req.url}`);
+    next();
+  });
+
   // Global validation pipe
   app.useGlobalPipes(
     new ValidationPipe({

@@ -30,6 +30,7 @@ export class AiService implements OnModuleInit {
       const docPath = path.join(process.cwd(), 'assets', 'documents', 'document-1.txt');
       if (fs.existsSync(docPath)) {
         this.systemPrompt = fs.readFileSync(docPath, 'utf8');
+        console.log(`[AI SERVICE] Successfully loaded system prompt (${this.systemPrompt.length} bytes)`);
       } else {
         console.warn('System prompt document not found at:', docPath);
       }
