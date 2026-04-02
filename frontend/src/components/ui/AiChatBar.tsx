@@ -68,7 +68,13 @@ export default function AiChatBar() {
   // Close on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      if (open && wrapRef.current && !wrapRef.current.contains(e.target as Node)) setOpen(false)
+      const target = e.target as Node
+      if (open && wrapRef.current && !wrapRef.current.contains(target)) {
+        // If the target element is no longer in the document, it was likely removed 
+        // during the click event (e.g. clicking a suggestion chip), so don't close.
+        if (!document.body.contains(target)) return
+        setOpen(false)
+      }
     }
     document.addEventListener('click', handler)
     return () => document.removeEventListener('click', handler)
@@ -201,7 +207,7 @@ export default function AiChatBar() {
         {showChips && (
           <div className="flex flex-wrap gap-1.5 px-4 sm:px-[18px] py-3 border-t border-black/[0.05]">
             {SUGGESTIONS.map(s => (
-              <button key={s} onClick={() => { setInput(s); sendMessage(s) }}
+              <button key={s} onClick={(e) => { e.stopPropagation(); sendMessage(s) }}
                 className="px-3 py-1.5 rounded-full border-[1.5px] border-brand-ind/20 bg-brand-ind/4 text-brand-ind font-body text-[12px] transition-all hover:bg-brand-ind/11 hover:border-brand-ind whitespace-nowrap">
                 {s}
               </button>
