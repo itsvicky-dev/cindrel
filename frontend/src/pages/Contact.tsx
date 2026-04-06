@@ -4,7 +4,7 @@ import { Reveal, Eyebrow, SectionHeading, PageHero } from '@/components/ui'
 import { FAQ_ITEMS } from '@/lib/data'
 import { API_URL } from '@/lib/utils'
 
-const inputCls = 'w-full bg-white/4 border border-white/[0.1] rounded-[10px] px-3.5 sm:px-4 py-3 sm:py-[13px] text-dk-text font-body text-[14px] sm:text-[14.5px] outline-none transition-all focus:border-brand-ind/50 focus:bg-brand-ind/4 placeholder:text-dk-dim appearance-none'
+const inputCls = 'w-full bg-white/4 border border-white/[0.1] rounded-[10px] px-3.5 sm:px-4 py-3 sm:py-[13px] text-dk-text font-body text-[14px] sm:text-[14.5px] outline-none transition-all focus:border-brand-ind/50 focus:bg-brand-ind/4 placeholder:text-dk-dim appearance-none [&>option]:bg-[#0d1020] [&>option]:text-white'
 const labelCls = 'block font-mono text-[9.5px] sm:text-[10px] tracking-[0.15em] uppercase text-dk-muted mb-2'
 
 export default function ContactPage() {

@@ -1,16 +1,22 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { ConfigService } from '@nestjs/config';
 import * as nodemailer from 'nodemailer';
 import { CreateContactDto } from './contact.dto';
+import { Contact, ContactDocument } from './contact.schema';
 
 @Injectable()
 export class ContactService {
   private readonly logger = new Logger(ContactService.name);
   private transporter: nodemailer.Transporter;
 
-  constructor(private readonly config: ConfigService) {
+  constructor(
+    @InjectModel(Contact.name) private contactModel: Model<ContactDocument>,
+    private readonly config: ConfigService,
+  ) {
     this.transporter = nodemailer.createTransport({
-      host:   config.get('SMTP_HOST',    'smtp.gmail.com'),
+      host:   config.get('SMTP_HOST', 'smtp.gmail.com'),
       port:   config.get<number>('SMTP_PORT', 587),
       secure: false,
       auth: {
@@ -21,14 +27,25 @@ export class ContactService {
   }
 
   async create(dto: CreateContactDto) {
-    this.logger.log(`New lead from ${dto.email} — ${dto.company}`);
+    // Save to MongoDB
+    let saved: ContactDocument;
+    try {
+      saved = await this.contactModel.create(dto);
+      this.logger.log(`Saved lead [${saved._id}] from ${dto.email} — ${dto.company}`);
+    } catch (err) {
+      this.logger.error(`Failed to save contact to DB: ${err.message}`, err.stack);
+      throw err;
+    }
 
-    // Send notification email to the Cindrals team
-    const toEmail = this.config.get('NOTIFY_EMAIL', 'hello@cindrals.com');
+    const toEmail = this.config.get('NOTIFY_EMAIL', 'vigneshwari.s@wele.in');
 
+    const fromName = this.config.get('SMTP_FROM_NAME', 'Cindrel');
+    const fromEmail = this.config.get('SMTP_FROM_EMAIL', this.config.get('SMTP_USER'));
+
+    // Notification email to team
     try {
       await this.transporter.sendMail({
-        from: `"Cindrals Website" <${this.config.get('SMTP_USER')}>`,
+        from: `"${fromName}" <${fromEmail}>`,
         to:   toEmail,
         subject: `🔥 New Automation Lead: ${dto.company} — ${dto.goal ?? 'General'}`,
         html: `
@@ -48,31 +65,11 @@ export class ContactService {
       });
       this.logger.log(`Notification email sent to ${toEmail}`);
     } catch (err) {
-      // Don't throw — still return success to client even if email fails
-      this.logger.warn(`Email send failed: ${err.message}`);
+      this.logger.warn(`Notification email failed: ${err.message}`);
     }
 
-    // Send auto-reply to submitter
-    try {
-      await this.transporter.sendMail({
-        from: `"Cindrals" <${this.config.get('SMTP_USER')}>`,
-        to:   dto.email,
-        subject: `We received your message, ${dto.name.split(' ')[0]}! 🚀`,
-        html: `
-          <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
-            <h2 style="color:#4f6ef7">Thanks for reaching out, ${dto.name.split(' ')[0]}!</h2>
-            <p>We've received your automation inquiry and a senior engineer will be in touch within <strong>24 hours</strong> to schedule your free strategy session.</p>
-            <p style="color:#666">In the meantime, feel free to check out our case studies at <a href="https://cindrals.com/cases" style="color:#4f6ef7">cindrals.com/cases</a>.</p>
-            <p>— The Cindrals Team</p>
-            <hr style="border:none;border-top:1px solid #eee;margin:24px 0">
-            <p style="font-size:12px;color:#999">Cindrals · Chennai, India · hello@cindrals.com</p>
-          </div>
-        `,
-      });
-    } catch (err) {
-      this.logger.warn(`Auto-reply failed: ${err.message}`);
-    }
+    // Auto-reply removed as per request to only send to team email
 
-    return { success: true, message: 'Your message has been received. We\'ll be in touch within 24 hours.' };
+    return { success: true, message: "Your message has been received. We'll be in touch within 24 hours." };
   }
 }
