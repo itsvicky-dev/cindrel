@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { CindrelLogo } from '@/components/ui'
+import Logo from '../../assets/images/logo.svg'
 
 const COLS = [
   { title:'Company',   links:[{l:'About Us',href:'/about'},{l:'Blog',href:'/blog'},{l:'Case Studies',href:'/cases'},{l:'Careers',href:'/contact'}] },
@@ -10,13 +10,13 @@ const COLS = [
 
 export default function Footer() {
   return (
-    <footer className="bg-dk-bg border-t border-white/[0.08] pt-12 sm:pt-16 lg:pt-20 pb-8 sm:pb-10 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14">
+    <footer className="bg-[#161618] border-t border-white/[0.08] pt-12 sm:pt-16 lg:pt-20 pb-8 sm:pb-10 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14">
       <div className="max-w-[1280px] mx-auto">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-[1.8fr_1fr_1fr_1fr_1fr] gap-8 sm:gap-10 lg:gap-12 pb-10 sm:pb-14 border-b border-white/[0.08] mb-6 sm:mb-9">
           {/* Brand */}
           <div className="col-span-2 sm:col-span-3 lg:col-span-1">
             <Link to="/" className="flex items-center gap-2.5 mb-3">
-              <CindrelLogo size={32} />
+              <img src={Logo} alt="Cindrel Logo" className="w-8 h-8 sm:w-9 sm:h-9 object-contain" />
               <span className="font-heading font-extrabold text-[17px] tracking-[0.05em] uppercase text-dk-text">Cindrel</span>
             </Link>
             <p className="text-[13.5px] sm:text-[14px] text-dk-muted leading-[1.75] max-w-[270px] mt-2.5">

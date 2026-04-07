@@ -1,63 +1,64 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Check, X } from 'lucide-react'
-import { Reveal, Eyebrow, SectionHeading, Button, CindrelLogo } from '@/components/ui'
+import { Reveal, Eyebrow, SectionHeading, Button } from '@/components/ui'
 import {
   HERO_STATS, TRUSTED_BRANDS, SERVICES, USE_CASES, TOOLS,
   INDUSTRIES, PROCESS_STEPS, CASE_STUDIES, WHY_ITEMS, TESTIMONIALS,
 } from '@/lib/data'
+import Logo from '../../assets/images/logo.svg'
 import { INR_RATE } from '@/lib/utils'
+import FreeAutomationImg from '@/assets/images/free_automation_illustration.png'
 
 /* ── Hero ─────────────────────────────────────── */
 export function HeroSection() {
   const NODES = [
-    { e:'⚡', top:'3%',    left:'50%',    ml:'-28px', bg:'rgba(79,110,247,.2)',   an:'floatUp',   ad:'4s' },
-    { e:'🤖', top:'21%',   right:'2%',                bg:'rgba(0,212,240,.14)',  an:'floatDown', ad:'4.5s', adel:'.5s' },
-    { e:'🔗', bottom:'21%',right:'2%',                bg:'rgba(155,109,255,.2)', an:'floatUp',   ad:'4.2s', adel:'1s' },
-    { e:'📊', bottom:'3%', left:'50%',    ml:'-28px', bg:'rgba(79,110,247,.15)', an:'floatDown', ad:'3.8s', adel:'.3s' },
-    { e:'🧠', bottom:'21%',left:'2%',                 bg:'rgba(0,212,240,.12)',  an:'floatUp',   ad:'4.8s', adel:'.7s' },
-    { e:'📧', top:'21%',   left:'2%',                 bg:'rgba(155,109,255,.15)',an:'floatDown', ad:'4.3s', adel:'1.2s' },
+    { e: '⚡', top: '3%', left: '50%', ml: '-28px', bg: 'rgba(79,110,247,.2)', an: 'floatUp', ad: '4s' },
+    { e: '🤖', top: '21%', right: '2%', bg: 'rgba(0,212,240,.14)', an: 'floatDown', ad: '4.5s', adel: '.5s' },
+    { e: '🔗', bottom: '21%', right: '2%', bg: 'rgba(155,109,255,.2)', an: 'floatUp', ad: '4.2s', adel: '1s' },
+    { e: '📊', bottom: '3%', left: '50%', ml: '-28px', bg: 'rgba(79,110,247,.15)', an: 'floatDown', ad: '3.8s', adel: '.3s' },
+    { e: '🧠', bottom: '21%', left: '2%', bg: 'rgba(0,212,240,.12)', an: 'floatUp', ad: '4.8s', adel: '.7s' },
+    { e: '📧', top: '21%', left: '2%', bg: 'rgba(155,109,255,.15)', an: 'floatDown', ad: '4.3s', adel: '1.2s' },
   ]
   return (
     <section className="relative min-h-screen flex items-center pt-16 sm:pt-[70px] lg:pt-[78px] bg-dk-bg overflow-hidden">
       <div className="hero-grid pointer-events-none" />
       {/* Blobs */}
       <div className="absolute rounded-full blur-[90px] pointer-events-none mix-blend-screen animate-blob"
-        style={{ width:'clamp(260px,55vw,700px)', height:'clamp(220px,45vw,550px)', top:-80, right:-60,
-          background:'radial-gradient(circle,rgba(79,110,247,.22) 0%,transparent 65%)' }} />
+        style={{
+          width: 'clamp(260px,55vw,700px)', height: 'clamp(220px,45vw,550px)', top: -80, right: -60,
+          background: 'radial-gradient(circle,rgba(79,110,247,.22) 0%,transparent 65%)'
+        }} />
       <div className="absolute rounded-full blur-[90px] pointer-events-none mix-blend-screen animate-[blobDrift_22s_4s_ease-in-out_infinite_reverse]"
-        style={{ width:'clamp(200px,45vw,500px)', height:'clamp(160px,38vw,420px)', bottom:-70, left:-50,
-          background:'radial-gradient(circle,rgba(155,109,255,.15) 0%,transparent 65%)' }} />
+        style={{
+          width: 'clamp(200px,45vw,500px)', height: 'clamp(160px,38vw,420px)', bottom: -70, left: -50,
+          background: 'radial-gradient(circle,rgba(155,109,255,.15) 0%,transparent 65%)'
+        }} />
 
-      <div className="relative z-10 max-w-[1280px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 py-12 lg:py-0 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 xl:gap-18 items-center">
+      <div className="relative z-10 max-w-[1280px] mx-auto px-4 sm:px-6 md:px-8 lg:px-0 py-12 lg:py-0 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-16 xl:gap-18 items-center">
           {/* Copy */}
-          <div className="text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 bg-brand-ind/10 border border-brand-ind/30 rounded-full px-4 py-1.5 mb-6 font-mono text-[10px] sm:text-[11px] text-brand-ind2"
-              style={{ animation:'fadeSlideUp .8s ease both' }}>
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-pip" style={{ boxShadow:'0 0 8px rgba(0,212,240,.8)' }} />
-              AI Automation Experts · Accepting Projects Q2 2025
-            </div>
+          <div className="text-center lg:text-left col-span-2">
             <h1 className="font-heading font-extrabold leading-[1.06] tracking-[-2px] sm:tracking-[-2.5px] text-dk-text mb-5 sm:mb-6"
-              style={{ fontSize:'clamp(38px,6vw,80px)', animation:'fadeSlideUp .8s .1s ease both' }}>
+              style={{ fontSize: 'clamp(38px,6vw,80px)', animation: 'fadeSlideUp .8s .1s ease both' }}>
               Automate Your<br />Business.<br />
-              <span className="text-grad-brand">Scale Without<br />Limits.</span>
+              <span className="text-grad-brand">Scale Without Limits.</span>
             </h1>
             <p className="text-[15px] sm:text-[16px] lg:text-[17px] text-dk-muted leading-[1.8] mb-8 sm:mb-10 max-w-[490px] mx-auto lg:mx-0"
-              style={{ animation:'fadeSlideUp .8s .2s ease both' }}>
+              style={{ animation: 'fadeSlideUp .8s .2s ease both' }}>
               We engineer intelligent automation systems — AI agents, n8n workflows, Zapier pipelines, and custom integrations — that permanently eliminate manual work and unlock compounding productivity.
             </p>
             <div className="flex flex-wrap gap-3 justify-center lg:justify-start"
-              style={{ animation:'fadeSlideUp .8s .3s ease both' }}>
+              style={{ animation: 'fadeSlideUp .8s .3s ease both' }}>
               <Button href="/contact" variant="primary">
-                Book Free Audit
+                Get Your First Automation Free
                 <span className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center text-[12px]">→</span>
               </Button>
               <Button href="/services" variant="ghost-dk">Explore Services</Button>
             </div>
             {/* Stats */}
-            <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-4 sm:gap-6 mt-10 pt-8 border-t border-white/[0.08]"
-              style={{ animation:'fadeSlideUp .8s .4s ease both' }}>
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-4 sm:gap-6 mt-10 pt-8 mb-10 border-t border-white/[0.08]"
+              style={{ animation: 'fadeSlideUp .8s .4s ease both' }}>
               {HERO_STATS.map((s, i) => (
                 <div key={s.num} className="flex items-center gap-4 sm:gap-6">
                   <div>
@@ -70,51 +71,51 @@ export function HeroSection() {
             </div>
           </div>
           {/* Orb */}
-          <div className="flex justify-center" style={{ animation:'fadeSlideUp 1s .5s ease both' }}>
-            <div className="relative w-full aspect-square" style={{ maxWidth:'clamp(260px,50vw,490px)' }}>
+          <div className="flex justify-center" style={{ animation: 'fadeSlideUp 1s .5s ease both' }}>
+            <div className="relative w-full aspect-square" style={{ maxWidth: 'clamp(260px,50vw,490px)' }}>
               {/* Rings */}
-              {[{s:248,b:'rgba(79,110,247,.22)',d:'20s'},{s:348,b:'rgba(0,212,240,.09)',d:'30s',r:true},{s:448,b:'rgba(155,109,255,.07)',d:'42s'}].map(({s,b,d,r},i) => (
-                <div key={i} className="absolute rounded-full" style={{ width:s,height:s,top:'50%',left:'50%',marginLeft:-s/2,marginTop:-s/2,border:`1px solid ${b}`,animation:`spin ${d} linear infinite${r?' reverse':''}` }} />
+              {[{ s: 248, b: 'rgba(79,110,247,.22)', d: '20s' }, { s: 348, b: 'rgba(0,212,240,.09)', d: '30s', r: true }, { s: 448, b: 'rgba(155,109,255,.07)', d: '42s' }].map(({ s, b, d, r }, i) => (
+                <div key={i} className="absolute rounded-full" style={{ width: s, height: s, top: '50%', left: '50%', marginLeft: -s / 2, marginTop: -s / 2, border: `1px solid ${b}`, animation: `spin ${d} linear infinite${r ? ' reverse' : ''}` }} />
               ))}
               {/* SVG lines */}
               <svg className="absolute inset-0 w-full h-full" viewBox="0 0 490 490">
                 <defs>
                   <linearGradient id="cg" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%"   stopColor="#4f6ef7" stopOpacity="0.9" />
+                    <stop offset="0%" stopColor="#4f6ef7" stopOpacity="0.9" />
                     <stop offset="100%" stopColor="#00d4f0" stopOpacity="0.9" />
                   </linearGradient>
                 </defs>
-                {[[245,112,245,245,'0s'],[378,180,245,245,'.5s'],[378,315,245,245,'1s'],[245,382,245,245,'1.5s'],[112,315,245,245,'.3s'],[112,180,245,245,'.8s']].map(([x1,y1,x2,y2,delay],i) => (
-                  <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} className="conn-line" style={{ animationDelay:delay as string }} />
+                {[[245, 112, 245, 245, '0s'], [378, 180, 245, 245, '.5s'], [378, 315, 245, 245, '1s'], [245, 382, 245, 245, '1.5s'], [112, 315, 245, 245, '.3s'], [112, 180, 245, 245, '.8s']].map(([x1, y1, x2, y2, delay], i) => (
+                  <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} className="conn-line" style={{ animationDelay: delay as string }} />
                 ))}
               </svg>
               {/* Core */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] lg:w-[158px] lg:h-[158px] rounded-full flex items-center justify-center z-10"
-                style={{ background:'radial-gradient(circle at 35% 35%,rgba(79,110,247,.6),rgba(79,110,247,.07) 65%,transparent)',boxShadow:'0 0 55px rgba(79,110,247,.4),0 0 110px rgba(79,110,247,.1),inset 0 0 32px rgba(0,212,240,.13)',border:'1px solid rgba(79,110,247,.44)' }}>
+                style={{ background: 'radial-gradient(circle at 35% 35%,rgba(79,110,247,.6),rgba(79,110,247,.07) 65%,transparent)', boxShadow: '0 0 55px rgba(79,110,247,.4),0 0 110px rgba(79,110,247,.1),inset 0 0 32px rgba(0,212,240,.13)', border: '1px solid rgba(79,110,247,.44)' }}>
                 <div className="text-center">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-[54px] lg:h-[54px] mx-auto mb-1"><CindrelLogo size={54} /></div>
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-[54px] lg:h-[54px] mx-auto mb-1"><img src={Logo} alt="Logo" className="w-full h-full object-contain" /></div>
                   <span className="font-mono text-[7px] sm:text-[8px] text-brand-cyan tracking-[2px] uppercase">AI Core</span>
                 </div>
               </div>
               {/* Nodes */}
-              {NODES.map(({e,an,ad,adel,...pos},i) => (
+              {NODES.map(({ e, an, ad, adel, ...pos }, i) => (
                 <div key={i} className="absolute w-10 h-10 sm:w-12 sm:h-12 lg:w-[56px] lg:h-[56px] rounded-[12px] lg:rounded-[14px] backdrop-blur-md border border-white/10 flex items-center justify-center text-[16px] sm:text-[18px] lg:text-[20px] z-20 shadow-[0_4px_20px_rgba(0,0,0,0.45)]"
-                  style={{ ...pos, background:pos.bg, animation:`${an} ${ad}${adel?` ${adel}`:''} ease-in-out infinite` } as React.CSSProperties}>
+                  style={{ ...pos, background: pos.bg, animation: `${an} ${ad}${adel ? ` ${adel}` : ''} ease-in-out infinite` } as React.CSSProperties}>
                   {e}
                 </div>
               ))}
               {/* Micro cards */}
               <div className="hidden xs:block absolute top-[7%] right-[-6%] sm:right-[-9%] bg-white/5 border border-white/[0.14] rounded-[12px] px-3 py-2.5 sm:px-4 sm:py-3 backdrop-blur-md z-30 min-w-[120px] sm:min-w-[145px] shadow-[0_8px_26px_rgba(0,0,0,0.4)]"
-                style={{ animation:'floatUp 5s .5s ease-in-out infinite' }}>
+                style={{ animation: 'floatUp 5s .5s ease-in-out infinite' }}>
                 <div className="font-mono text-[8px] sm:text-[9px] text-dk-muted tracking-[2px] uppercase mb-1">Tasks Automated</div>
                 <div className="font-heading font-bold text-[16px] sm:text-[20px] text-green-400">+2,840</div>
-                <div className="flex gap-1 mt-1.5">{[1,1,1,0].map((f,i)=><div key={i} className={`h-[3px] flex-1 rounded-[2px] ${f?'bg-gradient-to-r from-brand-ind to-brand-cyan':'bg-white/12'}`}/>)}</div>
+                <div className="flex gap-1 mt-1.5">{[1, 1, 1, 0].map((f, i) => <div key={i} className={`h-[3px] flex-1 rounded-[2px] ${f ? 'bg-gradient-to-r from-brand-ind to-brand-cyan' : 'bg-white/12'}`} />)}</div>
               </div>
               <div className="hidden xs:block absolute bottom-[10%] left-[-6%] sm:left-[-7%] bg-white/5 border border-white/[0.14] rounded-[12px] px-3 py-2.5 sm:px-4 sm:py-3 backdrop-blur-md z-30 min-w-[120px] sm:min-w-[145px] shadow-[0_8px_26px_rgba(0,0,0,0.4)]"
-                style={{ animation:'floatDown 5.5s 1s ease-in-out infinite' }}>
+                style={{ animation: 'floatDown 5.5s 1s ease-in-out infinite' }}>
                 <div className="font-mono text-[8px] sm:text-[9px] text-dk-muted tracking-[2px] uppercase mb-1">Live Workflows</div>
                 <div className="font-heading font-bold text-[16px] sm:text-[20px] text-brand-cyan">47 active</div>
-                <div className="flex gap-1 mt-1.5">{[1,1,1,1].map((_,i)=><div key={i} className="h-[3px] flex-1 rounded-[2px] bg-gradient-to-r from-brand-ind to-brand-cyan"/>)}</div>
+                <div className="flex gap-1 mt-1.5">{[1, 1, 1, 1].map((_, i) => <div key={i} className="h-[3px] flex-1 rounded-[2px] bg-gradient-to-r from-brand-ind to-brand-cyan" />)}</div>
               </div>
             </div>
           </div>
@@ -124,15 +125,46 @@ export function HeroSection() {
   )
 }
 
+
+/* ── Free Automation Section ───────────────── */
+export function FreeAutomationSection() {
+  return (
+    <section className="bg-[linear-gradient(360deg,#EEF0FF_0%,#FFFFFF_100%)] py-16 sm:py-24 md:py-32 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 bg-lt-bg">
+      <div className="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-20 items-center">
+        <Reveal className='col-span-2'>
+          <Eyebrow>WE OFFER</Eyebrow>
+          <h2 className="font-heading font-extrabold leading-[1.08] tracking-[-1.5px] text-lt-text mb-6" style={{ fontSize: 'clamp(38px,5vw,72px)' }}>
+            Start your first<br />
+            <span className="text-grad-result">Automation for Free</span>
+          </h2>
+          <p className="text-[15px] sm:text-[16px] lg:text-[18px] text-lt-muted leading-[1.78] mb-10 max-w-[540px]">
+            Best-in-class tools combined with custom engineering — picking the exact right instrument for every workflow and orchestrating them in perfect harmony.
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <Button href="/contact" variant="solid-dk" className="px-8 py-2">
+              Book your Slot
+              <span className="w-7 h-7 bg-white/20 rounded-full flex items-center justify-center text-[14px]">→</span>
+            </Button>
+          </div>
+        </Reveal>
+        <Reveal delay={0.2} className="relative">
+          <div className="absolute inset-0 bg-gradient-to-tr from-brand-ind/10 to-brand-cyan/10 rounded-full blur-[100px] pointer-events-none" />
+          <img src={FreeAutomationImg} alt="Free Automation Illustration" className="relative w-full h-auto drop-shadow-2xl hover:scale-[1.02] transition-transform duration-700" />
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
 /* ── Trusted ──────────────────────────────────── */
 export function TrustedSection() {
   return (
-    <section className="py-8 sm:py-10 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 bg-dk-bg2 border-t border-white/[0.08] border-b border-white/[0.08]">
+    <section className="py-8 sm:py-10 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 bg-[#4f6ef7] border-t border-white/[0.08] border-b border-white/[0.08] flex ">
       <div className="max-w-[1280px] mx-auto flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-4 sm:gap-8 lg:gap-12">
         <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-dk-dim whitespace-nowrap flex-shrink-0">Trusted by</span>
         <div className="flex flex-wrap gap-5 sm:gap-8 lg:gap-10 flex-1 items-center">
           {TRUSTED_BRANDS.map(b => (
-            <span key={b} className="font-heading font-bold text-[13px] sm:text-[14.5px] text-dk-dim opacity-45 hover:opacity-80 hover:text-dk-text transition-all cursor-default">{b}</span>
+            <span key={b} className="font-heading font-bold text-[13px] sm:text-[14.5px] text-black hover:opacity-80 hover:text-dk-text transition-all cursor-default">{b}</span>
           ))}
         </div>
       </div>
@@ -156,8 +188,7 @@ export function ServicesSection() {
             <Reveal key={s.num} delay={Math.min(i * 0.07, 0.35)}>
               <div className="group bg-lt-bg hover:bg-[#fafbff] p-6 sm:p-8 lg:p-10 pb-12 sm:pb-14 relative overflow-hidden transition-colors duration-300 h-full">
                 <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-brand-ind to-brand-cyan scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100" />
-                <div className="font-mono text-[10px] tracking-[0.15em] text-lt-dim mb-5">{s.num} —</div>
-                <div className="w-11 h-11 sm:w-[50px] sm:h-[50px] rounded-[12px] sm:rounded-[14px] flex items-center justify-center text-[18px] sm:text-[20px] mb-5" style={{ background:s.color }}>{s.icon}</div>
+                <div className="w-11 h-11 sm:w-[50px] sm:h-[50px] rounded-[12px] sm:rounded-[14px] flex items-center justify-center text-[18px] sm:text-[20px] mb-5" style={{ background: s.color }}>{s.icon}</div>
                 <h3 className="font-heading font-bold text-[17px] sm:text-[19px] text-lt-text mb-2.5">{s.title}</h3>
                 <p className="text-[13.5px] sm:text-[14.5px] text-lt-muted leading-[1.72]">{s.desc}</p>
                 <div className="absolute bottom-6 sm:bottom-8 right-6 sm:right-8 w-8 h-8 sm:w-[34px] sm:h-[34px] rounded-full border border-black/10 flex items-center justify-center text-lt-dim text-[13px] transition-all group-hover:border-brand-ind group-hover:text-brand-ind group-hover:bg-brand-ind/8 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</div>
@@ -181,7 +212,6 @@ export function UseCasesSection() {
             <Reveal key={uc.num} delay={Math.min((i % 4) * 0.07, 0.28)}>
               <div className="group bg-dk-bg2 hover:bg-dk-surf p-5 sm:p-6 lg:p-7 relative overflow-hidden transition-colors h-full">
                 <div className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-brand-ind to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="font-mono text-[10px] text-dk-dim tracking-[0.15em] mb-4">{uc.num}</div>
                 <span className="text-[22px] sm:text-[26px] mb-3 block">{uc.emoji}</span>
                 <h4 className="font-heading font-bold text-[14px] sm:text-[15px] text-dk-text mb-2">{uc.title}</h4>
                 <p className="text-[12.5px] sm:text-[13px] text-dk-muted leading-[1.65]">{uc.desc}</p>
@@ -208,7 +238,7 @@ export function ToolsSection() {
         <Reveal delay={0.16} className="flex flex-wrap gap-2 sm:gap-2.5">
           {TOOLS.map(t => (
             <div key={t.name} className="flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-[18px] py-2 sm:py-[9px] rounded-full border-[1.5px] border-black/10 text-[12px] sm:text-[13px] font-medium text-lt-text transition-all hover:border-brand-ind hover:text-brand-ind hover:bg-brand-ind/6 hover:-translate-y-0.5">
-              <span className="w-[6px] h-[6px] sm:w-[7px] sm:h-[7px] rounded-full flex-shrink-0" style={{ background:t.color }} />{t.name}
+              <span className="w-[6px] h-[6px] sm:w-[7px] sm:h-[7px] rounded-full flex-shrink-0" style={{ background: t.color }} />{t.name}
             </div>
           ))}
         </Reveal>
@@ -296,22 +326,22 @@ export function ResultsSection() {
 
 /* ── Why + ROI ────────────────────────────────── */
 export function WhySection() {
-  const [team,  setTeam]  = useState(2)
+  const [team, setTeam] = useState(2)
   const [hours, setHours] = useState(8)
-  const [rate,  setRate]  = useState(15)
-  const [cur,   setCur]   = useState<'usd'|'inr'>('usd')
+  const [rate, setRate] = useState(15)
+  const [cur, setCur] = useState<'usd' | 'inr'>('usd')
 
   const savingsUSD = team * hours * 52 * rate * 0.7
   const savingsINR = savingsUSD * INR_RATE
   const mainDisplay = cur === 'usd'
-    ? '$' + savingsUSD.toLocaleString('en-US',{maximumFractionDigits:0})
-    : '₹' + savingsINR.toLocaleString('en-IN',{maximumFractionDigits:0})
+    ? '$' + savingsUSD.toLocaleString('en-US', { maximumFractionDigits: 0 })
+    : '₹' + savingsINR.toLocaleString('en-IN', { maximumFractionDigits: 0 })
   const altDisplay = cur === 'usd'
-    ? '≈ ₹' + savingsINR.toLocaleString('en-IN',{maximumFractionDigits:0})
-    : '≈ $' + savingsUSD.toLocaleString('en-US',{maximumFractionDigits:0})
+    ? '≈ ₹' + savingsINR.toLocaleString('en-IN', { maximumFractionDigits: 0 })
+    : '≈ $' + savingsUSD.toLocaleString('en-US', { maximumFractionDigits: 0 })
 
-  const trackBg = (val:number, min:number, max:number) => {
-    const pct = ((val-min)/(max-min))*100
+  const trackBg = (val: number, min: number, max: number) => {
+    const pct = ((val - min) / (max - min)) * 100
     return `linear-gradient(to right,#4f6ef7 0%,#4f6ef7 ${pct}%,rgba(0,0,0,0.12) ${pct}%,rgba(0,0,0,0.12) 100%)`
   }
 
@@ -341,17 +371,17 @@ export function WhySection() {
             <p className="text-[13px] sm:text-[13.5px] text-lt-muted mb-5">Estimate your savings — view in USD or INR</p>
             {/* Currency toggle */}
             <div className="flex gap-2 mb-6">
-              {(['usd','inr'] as const).map(c => (
+              {(['usd', 'inr'] as const).map(c => (
                 <button key={c} onClick={() => setCur(c)}
-                  className={`flex-1 py-2 rounded-full font-mono text-[11px] tracking-[.12em] uppercase font-semibold border transition-all ${cur===c?'bg-brand-ind border-brand-ind text-white':'bg-transparent border-black/13 text-lt-muted hover:border-brand-ind/40'}`}>
-                  {c==='usd'?'$ USD':'₹ INR'}
+                  className={`flex-1 py-2 rounded-full font-mono text-[11px] tracking-[.12em] uppercase font-semibold border transition-all ${cur === c ? 'bg-brand-ind border-brand-ind text-white' : 'bg-transparent border-black/13 text-lt-muted hover:border-brand-ind/40'}`}>
+                  {c === 'usd' ? '$ USD' : '₹ INR'}
                 </button>
               ))}
             </div>
             {[
-              {label:'Team Size', val:`${team} ${team===1?'person':'people'}`, value:team, setter:setTeam, min:1, max:200},
-              {label:'Manual Hours / Week per Person', val:`${hours} hrs`, value:hours, setter:setHours, min:1, max:40},
-              {label:`Avg. Hourly Cost (${cur==='usd'?'USD':'INR'})`, val:cur==='usd'?`$${rate}`:`₹${rate}`, value:rate, setter:setRate, min:1, max:300},
+              { label: 'Team Size', val: `${team} ${team === 1 ? 'person' : 'people'}`, value: team, setter: setTeam, min: 1, max: 200 },
+              { label: 'Manual Hours / Week per Person', val: `${hours} hrs`, value: hours, setter: setHours, min: 1, max: 40 },
+              { label: `Avg. Hourly Cost (${cur === 'usd' ? 'USD' : 'INR'})`, val: cur === 'usd' ? `$${rate}` : `₹${rate}`, value: rate, setter: setRate, min: 1, max: 300 },
             ].map(s => (
               <div key={s.label} className="mb-5 sm:mb-6">
                 <div className="flex justify-between items-center mb-2">
@@ -360,12 +390,12 @@ export function WhySection() {
                 </div>
                 <input type="range" min={s.min} max={s.max} value={s.value} onChange={e => s.setter(+e.target.value)}
                   className="w-full h-[3px] rounded-sm appearance-none outline-none"
-                  style={{ background: trackBg(s.value,s.min,s.max) }} />
+                  style={{ background: trackBg(s.value, s.min, s.max) }} />
               </div>
             ))}
             <div className="mt-5 rounded-[12px] sm:rounded-[14px] p-4 sm:p-6 bg-gradient-to-br from-brand-ind/6 to-brand-cyan/4 border-[1.5px] border-brand-ind/20 text-center">
               <div className="font-mono text-[9.5px] sm:text-[10px] tracking-[0.18em] uppercase text-lt-muted mb-2">Estimated Annual Savings</div>
-              <div className="font-heading font-extrabold leading-none tracking-[-2px] text-grad-lt" style={{ fontSize:'clamp(36px,7vw,52px)' }}>{mainDisplay}</div>
+              <div className="font-heading font-extrabold leading-none tracking-[-2px] text-grad-lt" style={{ fontSize: 'clamp(36px,7vw,52px)' }}>{mainDisplay}</div>
               <div className="flex items-center justify-center gap-2 mt-1.5 flex-wrap">
                 <span className="font-mono text-[13px] text-brand-ind font-semibold">{altDisplay}</span>
                 <span className="text-[11px] text-lt-muted">@ ₹83.5 / $1</span>
@@ -416,15 +446,15 @@ export function CtaSection() {
   return (
     <section className="relative overflow-hidden bg-dk-bg">
       <div className="relative py-20 sm:py-28 lg:py-[150px] px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 flex items-center justify-center text-center">
-        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage:'linear-gradient(rgba(79,110,247,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(79,110,247,.05) 1px,transparent 1px)',backgroundSize:'54px 54px',WebkitMaskImage:'radial-gradient(ellipse 72% 72% at 50% 50%,black 20%,transparent 100%)' }} />
-        <div className="absolute rounded-full blur-[80px] pointer-events-none" style={{ width:'clamp(300px,55vw,600px)',height:'clamp(300px,55vw,600px)',top:'50%',left:'50%',transform:'translate(-50%,-50%)',background:'radial-gradient(circle,rgba(79,110,247,.2) 0%,transparent 68%)' }} />
-        <div className="absolute rounded-full blur-[80px] pointer-events-none animate-blob" style={{ width:400,height:400,top:'15%',left:'18%',background:'radial-gradient(circle,rgba(155,109,255,.14) 0%,transparent 68%)' }} />
-        <div className="absolute rounded-full blur-[80px] pointer-events-none animate-[blobDrift_15s_3s_ease-in-out_infinite_reverse]" style={{ width:340,height:340,bottom:'8%',right:'18%',background:'radial-gradient(circle,rgba(0,212,240,.1) 0%,transparent 68%)' }} />
+        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(79,110,247,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(79,110,247,.05) 1px,transparent 1px)', backgroundSize: '54px 54px', WebkitMaskImage: 'radial-gradient(ellipse 72% 72% at 50% 50%,black 20%,transparent 100%)' }} />
+        <div className="absolute rounded-full blur-[80px] pointer-events-none" style={{ width: 'clamp(300px,55vw,600px)', height: 'clamp(300px,55vw,600px)', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', background: 'radial-gradient(circle,rgba(79,110,247,.2) 0%,transparent 68%)' }} />
+        <div className="absolute rounded-full blur-[80px] pointer-events-none animate-blob" style={{ width: 400, height: 400, top: '15%', left: '18%', background: 'radial-gradient(circle,rgba(155,109,255,.14) 0%,transparent 68%)' }} />
+        <div className="absolute rounded-full blur-[80px] pointer-events-none animate-[blobDrift_15s_3s_ease-in-out_infinite_reverse]" style={{ width: 340, height: 340, bottom: '8%', right: '18%', background: 'radial-gradient(circle,rgba(0,212,240,.1) 0%,transparent 68%)' }} />
         <Reveal className="relative z-10 max-w-[740px] w-full">
           <div className="inline-flex items-center gap-2.5 bg-brand-ind/10 border border-brand-ind/28 rounded-full px-4 py-1.5 mb-6 font-mono text-[10px] sm:text-[11px] tracking-[0.1em] text-brand-ind2">
             <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-pip" />Free 30-min strategy session · Zero commitment
           </div>
-          <h2 className="font-heading font-extrabold leading-[1.04] tracking-[-2px] sm:tracking-[-2.2px] text-dk-text mb-5" style={{ fontSize:'clamp(34px,5.5vw,74px)' }}>
+          <h2 className="font-heading font-extrabold leading-[1.04] tracking-[-2px] sm:tracking-[-2.2px] text-dk-text mb-5" style={{ fontSize: 'clamp(34px,5.5vw,74px)' }}>
             Start Automating<br /><span className="text-grad-brand">Your Business Today</span>
           </h2>
           <p className="text-[15px] sm:text-[16px] lg:text-[17px] text-dk-muted leading-[1.8] max-w-[560px] mx-auto mb-10 sm:mb-12">Book a free AI automation strategy call. We'll map your highest-ROI workflows, identify your biggest bottlenecks, and hand you a concrete action plan — completely free.</p>
@@ -435,11 +465,11 @@ export function CtaSection() {
             <Button href="/cases" variant="ghost-dk">View Case Studies</Button>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6">
-            {['No commitment','30-min session','Custom roadmap','Senior engineer'].map((t, i, arr) => (
+            {['No commitment', '30-min session', 'Custom roadmap', 'Senior engineer'].map((t, i, arr) => (
               <span key={t} className="flex items-center gap-1.5 sm:gap-2">
                 <span className="text-brand-cyan text-[13px] sm:text-[14px]">✓</span>
                 <span className="text-[12px] sm:text-[13px] text-dk-muted">{t}</span>
-                {i < arr.length-1 && <span className="hidden sm:inline-block w-px h-[13px] bg-white/12 ml-3 sm:ml-5" />}
+                {i < arr.length - 1 && <span className="hidden sm:inline-block w-px h-[13px] bg-white/12 ml-3 sm:ml-5" />}
               </span>
             ))}
           </div>

@@ -1,7 +1,7 @@
 import {
-  HeroSection, TrustedSection, ServicesSection, UseCasesSection,
+  HeroSection, FreeAutomationSection, TrustedSection, ServicesSection, UseCasesSection,
   ToolsSection, IndustriesSection, ProcessSection, ResultsSection,
-  WhySection, TestimonialsSection, CtaSection,
+  WhySection, CtaSection,
 } from '@/components/sections/HomeSections'
 
 export default function HomePage() {
@@ -9,6 +9,7 @@ export default function HomePage() {
     <>
       <HeroSection />
       <TrustedSection />
+      <FreeAutomationSection />
       <ServicesSection />
       <UseCasesSection />
       <ToolsSection />
@@ -16,7 +17,7 @@ export default function HomePage() {
       <ProcessSection />
       <ResultsSection />
       <WhySection />
-      <TestimonialsSection />
+      {/* <TestimonialsSection /> */}
       <CtaSection />
     </>
   )

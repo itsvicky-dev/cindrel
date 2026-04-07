@@ -11,9 +11,6 @@
     line-height: 1.65;
   }
   /* Hide system cursor on pointer devices */
-  @media (hover: hover) and (pointer: fine) {
-    *, *::before, *::after { cursor: none !important; }
-  }
   ::-webkit-scrollbar       { width: 4px; }
   ::-webkit-scrollbar-track { background: #080a12; }
   ::-webkit-scrollbar-thumb { background: #4f6ef7; border-radius: 2px; }
@@ -21,46 +18,19 @@
   img, video { max-width: 100%; height: auto; }
 }
 
+@font-face {
+  font-family: 'Satoshi';
+  src: url('./assets/font/satoshi/Satoshi-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+.font-satoshi{
+    font-family: 'Satoshi'
+}
+
 /* ── Custom cursor elements ── */
 /* These are only rendered by React on pointer devices, so no media query needed */
-#cursor-dot,
-#cursor-ring {
-  border-radius: 9999px;
-  pointer-events: none !important;
-}
-
-#cursor-dot {
-  width: 9px;
-  height: 9px;
-  background: #4f6ef7;
-  box-shadow: 0 0 10px rgba(79,110,247,.6);
-  transition: width .18s ease, height .18s ease, background .2s ease;
-}
-
-#cursor-ring {
-  width: 32px;
-  height: 32px;
-  border: 1.5px solid rgba(79,110,247,.45);
-  background: transparent;
-  transition:
-    width  .38s cubic-bezier(.23,1,.32,1),
-    height .38s cubic-bezier(.23,1,.32,1),
-    border-color .3s ease;
-}
-
-/* Hover state — triggered by JS */
-#cursor-dot.hovering {
-  width: 13px;
-  height: 13px;
-  background: #7b94ff;
-  box-shadow: 0 0 16px rgba(123,148,255,.7);
-}
-
-#cursor-ring.hovering {
-  width: 48px;
-  height: 48px;
-  border-color: rgba(79,110,247,.55);
-}
 
 /* ── Gradient text ── */
 @layer utilities {
@@ -145,7 +115,7 @@ input[type=range]::-webkit-slider-thumb {
 }
 #ai-bar::before {
   content:''; position:absolute; inset:-1.5px; border-radius:100px;
-  background:linear-gradient(90deg,#4f6ef7,#00d4f0,#9b6dff,#4f6ef7);
+  /* background:linear-gradient(90deg,#4f6ef7,#00d4f0,#9b6dff,#4f6ef7); */
   background-size:300% 100%; animation:borderFlow 3s linear infinite;
   opacity:0; z-index:-1; transition:opacity .3s;
 }

@@ -11,7 +11,6 @@ export class Contact {
   @Prop() phone?: string;
   @Prop() companySize?: string;
   @Prop() goal?: string;
-  @Prop({ required: true }) needs: string;
   @Prop() budget?: string;
   @Prop() timeline?: string;
 }

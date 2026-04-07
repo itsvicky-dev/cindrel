@@ -32,16 +32,8 @@ export class CreateContactDto {
   @IsString()
   goal?: string;
 
-  @IsString()
-  @IsNotEmpty()
-  @MaxLength(2000)
-  needs: string;
-
   @IsOptional()
   @IsString()
   budget?: string;
 
-  @IsOptional()
-  @IsString()
-  timeline?: string;
 }

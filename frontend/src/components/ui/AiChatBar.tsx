@@ -155,9 +155,9 @@ export default function AiChatBar() {
   return (
     <div id="ai-bar-wrap" ref={wrapRef} className={open ? 'active' : ''}>
       {/* Hint */}
-      <div className="text-center font-mono text-[10px] tracking-[.1em] text-white/30 mb-1.5 pointer-events-none select-none">
+      {/* <div className="text-center font-mono text-[10px] tracking-[.1em] text-white/30 mb-1.5 pointer-events-none select-none">
         Ask Cindrel AI anything about automation
-      </div>
+      </div> */}
       {/* Glow */}
       <div id="ai-bar-glow" />
 
@@ -217,7 +217,7 @@ export default function AiChatBar() {
       </div>
 
       {/* Input bar */}
-      <div id="ai-bar">
+      <div id="ai-bar" className="border border-white">
         {/* Left: AI indicator */}
         <div className="flex items-center gap-2 mr-2.5 flex-shrink-0">
           <div className="w-2 h-2 rounded-full bg-gradient-to-br from-brand-ind to-brand-cyan animate-pip" style={{ boxShadow: '0 0 8px rgba(79,110,247,.7)' }} />

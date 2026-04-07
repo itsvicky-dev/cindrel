@@ -4,19 +4,19 @@ import { Reveal, Eyebrow, SectionHeading, PageHero } from '@/components/ui'
 import { FAQ_ITEMS } from '@/lib/data'
 import { API_URL } from '@/lib/utils'
 
-const inputCls = 'w-full bg-white/4 border border-white/[0.1] rounded-[10px] px-3.5 sm:px-4 py-3 sm:py-[13px] text-dk-text font-body text-[14px] sm:text-[14.5px] outline-none transition-all focus:border-brand-ind/50 focus:bg-brand-ind/4 placeholder:text-dk-dim appearance-none [&>option]:bg-[#0d1020] [&>option]:text-white'
+const inputCls = 'w-full bg-white/4 text-black border border-white/[0.1] rounded-[10px] px-3.5 sm:px-4 py-3 sm:py-[13px] font-body text-[14px] sm:text-[14.5px] outline-none transition-all focus:border-brand-ind/50 focus:bg-brand-ind/4 placeholder:text-gray appearance-none [&>option]:bg-[#0d1020] [&>option]:text-white'
 const labelCls = 'block font-mono text-[9.5px] sm:text-[10px] tracking-[0.15em] uppercase text-dk-muted mb-2'
 
 export default function ContactPage() {
   const [form, setForm] = useState({
-    name:'', company:'', email:'', phone:'',
-    companySize:'51–200 employees', goal:'Multiple / Not Sure',
-    needs:'', budget:'$5,000–$15,000', timeline:'Within 1 month',
+    name: '', company: '', email: '', phone: '',
+    companySize: '51–200 employees', goal: 'Multiple / Not Sure',
+    budget: '$5,000–$15,000',
   })
-  const [status, setStatus] = useState<'idle'|'loading'|'success'|'error'>('idle')
-  const [openFaq, setOpenFaq] = useState<number|null>(null)
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [openFaq, setOpenFaq] = useState<number | null>(null)
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement>) =>
+  const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
 
   const onSubmit = async (e: React.FormEvent) => {
@@ -43,10 +43,10 @@ export default function ContactPage() {
             <SectionHeading light>Ready to Eliminate<br />Manual Work?</SectionHeading>
             <p className="text-[14.5px] sm:text-[16px] text-lt-muted leading-[1.75] mb-8">Whether you have a specific project or just want to explore what's possible — we'd love to talk. Most clients leave their first call with 3 actionable automation ideas they can implement immediately.</p>
             {[
-              { ico:'📧', strong:'hello@cindrel.com',          soft:'Direct line to our team' },
-              { ico:'📞', strong:'+91 98765 43210',             soft:'Mon–Fri, 9AM–6PM IST' },
-              { ico:'💼', strong:'LinkedIn',                    soft:'linkedin.com/company/cindrel' },
-              { ico:'📍', strong:'Chennai, Tamil Nadu, India',  soft:'Serving clients globally · Remote-first' },
+              { ico: '📧', strong: 'contact@cindrel.com', soft: 'Direct line to our team' },
+              { ico: '📞', strong: '+91 93420 25655', soft: 'Mon–Fri, 9AM–6PM IST' },
+              { ico: '💼', strong: 'LinkedIn', soft: 'linkedin.com/company/cindrel' },
+              { ico: '📍', strong: 'Chennai, Tamil Nadu, India', soft: 'Serving clients globally · Remote-first' },
             ].map(c => (
               <div key={c.strong} className="flex items-center gap-3.5 mb-4">
                 <div className="w-10 h-10 sm:w-[43px] sm:h-[43px] rounded-[10px] sm:rounded-[12px] bg-dk-bg border-[1.5px] border-white/15 flex items-center justify-center text-[15px] sm:text-[17px] flex-shrink-0">{c.ico}</div>
@@ -59,7 +59,7 @@ export default function ContactPage() {
             <div className="mt-6 sm:mt-8 p-5 sm:p-6 bg-dk-bg border-[1.5px] border-white/15 rounded-[16px] sm:rounded-[18px]">
               <div className="font-mono text-[9.5px] sm:text-[10px] tracking-[0.15em] uppercase text-dk-muted mb-3">What to expect</div>
               <ul className="space-y-2">
-                {['30-min video call with a senior engineer','Process mapping and opportunity discovery','Custom automation roadmap (yours to keep)','ROI estimate for top 3 opportunities','No sales pressure, ever'].map(item => (
+                {['30-min video call with a senior engineer', 'Process mapping and opportunity discovery', 'Custom automation roadmap (yours to keep)', 'ROI estimate for top 3 opportunities', 'No sales pressure, ever'].map(item => (
                   <li key={item} className="flex items-start gap-2.5 text-[13px] sm:text-[14px] text-dk-muted">
                     <span className="text-brand-cyan mt-0.5 flex-shrink-0">→</span>{item}
                   </li>
@@ -92,38 +92,28 @@ export default function ContactPage() {
                   <div className="mt-3 sm:mt-4 mb-3 sm:mb-4">
                     <label className={labelCls}>Company Size</label>
                     <select name="companySize" value={form.companySize} onChange={onChange} className={inputCls}>
-                      {['1–10 employees','11–50 employees','51–200 employees','200+ employees'].map(o=><option key={o}>{o}</option>)}
+                      {['1–10 employees', '11–50 employees', '51–200 employees', '200+ employees'].map(o => <option key={o}>{o}</option>)}
                     </select>
-                  </div>
-                  <div className="mb-3 sm:mb-4">
-                    <label className={labelCls}>Primary Automation Goal *</label>
-                    <select name="goal" value={form.goal} onChange={onChange} className={inputCls}>
-                      {['CRM & Sales Automation','Customer Support AI','Marketing Automation','Data & Reporting','API Integration','AI Agent Development','Multiple / Not Sure'].map(o=><option key={o}>{o}</option>)}
-                    </select>
-                  </div>
-                  <div className="mb-3 sm:mb-4">
-                    <label className={labelCls}>Describe Your Needs *</label>
-                    <textarea name="needs" value={form.needs} onChange={onChange} required rows={3} placeholder="What processes are eating your team's time? What tools do you use?" className={`${inputCls} resize-none`} />
                   </div>
                   <div className="grid grid-cols-1 xs:grid-cols-2 gap-3 sm:gap-4 mb-5 sm:mb-6">
+                    <div className="mb-3 sm:mb-4">
+                      <label className={labelCls}>Primary Automation Goal *</label>
+                      <select name="goal" value={form.goal} onChange={onChange} className={inputCls}>
+                        {['CRM & Sales Automation', 'Customer Support AI', 'Marketing Automation', 'Data & Reporting', 'API Integration', 'AI Agent Development', 'Multiple / Not Sure'].map(o => <option key={o}>{o}</option>)}
+                      </select>
+                    </div>
                     <div>
                       <label className={labelCls}>Budget Range</label>
                       <select name="budget" value={form.budget} onChange={onChange} className={inputCls}>
-                        {['Under $2,000','$2,000–$5,000','$5,000–$15,000','$15,000–$50,000','$50,000+'].map(o=><option key={o}>{o}</option>)}
-                      </select>
-                    </div>
-                    <div>
-                      <label className={labelCls}>Timeline</label>
-                      <select name="timeline" value={form.timeline} onChange={onChange} className={inputCls}>
-                        {['ASAP','Within 1 month','1–3 months','Planning stage'].map(o=><option key={o}>{o}</option>)}
+                        {['Under $2,000', '$2,000–$5,000', '$5,000–$15,000', '$15,000–$50,000', '$50,000+'].map(o => <option key={o}>{o}</option>)}
                       </select>
                     </div>
                   </div>
-                  <button type="submit" disabled={status==='loading'}
+                  <button type="submit" disabled={status === 'loading'}
                     className="w-full py-3.5 sm:py-[15px] rounded-full bg-brand-ind text-white font-body font-bold text-[15px] sm:text-[15.5px] transition-all hover:-translate-y-0.5 hover:bg-brand-ind2 hover:shadow-[0_12px_36px_rgba(79,110,247,0.5)] disabled:opacity-60 active:scale-[0.98]">
-                    {status==='loading' ? 'Sending…' : '⚡ Book Free Automation Audit →'}
+                    {status === 'loading' ? 'Sending…' : '⚡ Book Free Automation Audit →'}
                   </button>
-                  {status==='error' && <p className="text-[12.5px] sm:text-[13px] text-red-400 text-center mt-3">Something went wrong. Email us at hello@cindrel.com</p>}
+                  {status === 'error' && <p className="text-[12.5px] sm:text-[13px] text-red-400 text-center mt-3">Something went wrong. Email us at hello@cindrel.com</p>}
                   <p className="text-[11.5px] sm:text-[12px] text-dk-dim text-center mt-3">No spam. No sales pressure. Just a genuine conversation about automation.</p>
                 </form>
               )}
@@ -140,12 +130,12 @@ export default function ContactPage() {
             <div className="divide-y divide-black/[0.08]">
               {FAQ_ITEMS.map((item, i) => (
                 <div key={i} className="py-4 sm:py-5">
-                  <button onClick={() => setOpenFaq(openFaq===i?null:i)}
+                  <button onClick={() => setOpenFaq(openFaq === i ? null : i)}
                     className="w-full flex justify-between items-start sm:items-center text-left font-heading font-semibold text-[15px] sm:text-[17px] text-lt-text hover:text-brand-ind transition-colors gap-4">
                     <span>{item.q}</span>
-                    <span className={`text-[18px] sm:text-[20px] text-lt-dim transition-transform duration-300 flex-shrink-0 ${openFaq===i?'rotate-45 !text-brand-ind':''}`}>+</span>
+                    <span className={`text-[18px] sm:text-[20px] text-lt-dim transition-transform duration-300 flex-shrink-0 ${openFaq === i ? 'rotate-45 !text-brand-ind' : ''}`}>+</span>
                   </button>
-                  <div className={`overflow-hidden transition-all duration-300 ${openFaq===i?'max-h-[300px] mt-3':'max-h-0'}`}>
+                  <div className={`overflow-hidden transition-all duration-300 ${openFaq === i ? 'max-h-[300px] mt-3' : 'max-h-0'}`}>
                     <p className="text-[13.5px] sm:text-[14.5px] text-lt-muted leading-[1.75]">{item.a}</p>
                   </div>
                 </div>

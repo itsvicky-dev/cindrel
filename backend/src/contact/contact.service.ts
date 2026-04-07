@@ -58,8 +58,6 @@ export class ContactService {
             <tr><td style="padding:8px;border:1px solid #eee"><b>Company Size</b></td><td style="padding:8px;border:1px solid #eee">${dto.companySize ?? '—'}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee"><b>Goal</b></td><td style="padding:8px;border:1px solid #eee">${dto.goal ?? '—'}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee"><b>Budget</b></td><td style="padding:8px;border:1px solid #eee">${dto.budget ?? '—'}</td></tr>
-            <tr><td style="padding:8px;border:1px solid #eee"><b>Timeline</b></td><td style="padding:8px;border:1px solid #eee">${dto.timeline ?? '—'}</td></tr>
-            <tr><td style="padding:8px;border:1px solid #eee"><b>Needs</b></td><td style="padding:8px;border:1px solid #eee">${dto.needs}</td></tr>
           </table>
         `,
       });

@@ -2,31 +2,6 @@ import { useEffect, useRef, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { cn } from '@/lib/utils'
 
-/* ── Cindrel Logo SVG ──────────────────────────── */
-export function CindrelLogo({ size = 40 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-      <rect width="120" height="120" rx="14" fill="#CC2B2B" />
-      <g transform="translate(60,58) rotate(45)">
-        <rect x="-36" y="-36" width="72" height="72" fill="none" stroke="white" strokeWidth="3.5" rx="1" />
-        <rect x="-28" y="-28" width="56" height="56" fill="none" stroke="white" strokeWidth="2.8" rx="1" />
-        <rect x="-20" y="-20" width="40" height="40" fill="none" stroke="white" strokeWidth="2.5" rx="1" />
-        <rect x="-12" y="-12" width="24" height="24" fill="none" stroke="white" strokeWidth="2.2" rx="1" />
-        <rect x="-5"  y="-5"  width="10" height="10" fill="none" stroke="white" strokeWidth="2"   rx="1" />
-        <circle cx="0" cy="0" r="2" fill="white" />
-        <line x1="-4" y1="-36" x2="4"  y2="-36" stroke="#CC2B2B" strokeWidth="4" />
-        <line x1="28" y1="-4"  x2="28" y2="4"   stroke="#CC2B2B" strokeWidth="4" />
-        <line x1="-4" y1="20"  x2="4"  y2="20"  stroke="#CC2B2B" strokeWidth="4" />
-        <line x1="-12" y1="-4" x2="-12" y2="4"  stroke="#CC2B2B" strokeWidth="4" />
-        <line x1="0"  y1="-36" x2="0"  y2="-28" stroke="white" strokeWidth="2.5" />
-        <line x1="28" y1="0"   x2="20" y2="0"   stroke="white" strokeWidth="2.2" />
-        <line x1="0"  y1="20"  x2="0"  y2="12"  stroke="white" strokeWidth="2"   />
-        <line x1="-12" y1="0"  x2="-5" y2="0"   stroke="white" strokeWidth="1.8" />
-      </g>
-    </svg>
-  )
-}
-
 /* ── Button ────────────────────────────────────── */
 type BtnVariant = 'primary' | 'ghost-dk' | 'ghost-lt' | 'solid-dk'
 interface BtnProps {
@@ -59,7 +34,7 @@ export function Eyebrow({ children, center = false }: { children: ReactNode; cen
   return (
     <div className={cn('inline-flex items-center gap-2.5 mb-4', center && 'justify-center')}>
       <span className="w-5 h-[1.5px] bg-brand-ind opacity-70" />
-      <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-brand-ind">{children}</span>
+      <span className="font-satoshi font-bold text-[11px] tracking-[0.18em] uppercase text-brand-ind">{children}</span>
       {center && <span className="w-5 h-[1.5px] bg-brand-ind opacity-70" />}
     </div>
   )
@@ -117,6 +92,40 @@ export function PageHero({ badge, title, sub }: { badge: string; title: ReactNod
           {title}
         </h1>
         <p className="text-[15px] sm:text-[16px] lg:text-[17px] text-dk-muted max-w-[600px] leading-[1.75]">{sub}</p>
+      </div>
+    </div>
+  )
+}
+
+export function Modal({ isOpen, onClose, children }: { isOpen: boolean; onClose: () => void; children: ReactNode }) {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => { document.body.style.overflow = 'unset' }
+  }, [isOpen])
+  if (!isOpen) return null
+  return (
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 md:p-8">
+      <div 
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-backdrop" 
+        onClick={onClose} 
+      />
+      <div className="relative bg-white rounded-[24px] shadow-2xl w-full max-w-[1300px] max-h-[90vh] overflow-y-auto animate-modal">
+        <button 
+          onClick={onClose}
+          className="absolute top-4 right-4 p-2 rounded-full bg-black/5 hover:bg-black/10 transition-colors z-10"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        <div className="p-6 sm:p-10 md:p-12">
+          {children}
+        </div>
       </div>
     </div>
   )

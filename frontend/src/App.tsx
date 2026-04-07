@@ -20,7 +20,6 @@ function ScrollToTop() {
 export default function App() {
   return (
     <div className="noise-overlay">
-      <CustomCursor />
       <ScrollToTop />
       <Navbar />
       <main className="min-h-screen">
