@@ -31,8 +31,9 @@ export default function ContactPage() {
   return (
     <>
       <PageHero badge="Free Strategy Session"
-        title={<>Let's Build Your<br />Automation System<br />Together</>}
-        sub="Tell us about your goals. Our senior engineers will respond within 24 hours with a tailored roadmap — completely free." />
+        title={<>Turn Your Workflow <br />into Automation Starting Today</>}
+        sub="Share your business goals and current processes with us.
+ Within 24 hours, our team will give you a clear automation roadmap designed for your needs — no cost, no commitment." />
 
       {/* Contact — white */}
       <section className="py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 bg-lt-bg">
@@ -41,12 +42,12 @@ export default function ContactPage() {
           <Reveal>
             <Eyebrow>Get In Touch</Eyebrow>
             <SectionHeading light>Ready to Eliminate<br />Manual Work?</SectionHeading>
-            <p className="text-[14.5px] sm:text-[16px] text-lt-muted leading-[1.75] mb-8">Whether you have a specific project or just want to explore what's possible — we'd love to talk. Most clients leave their first call with 3 actionable automation ideas they can implement immediately.</p>
+            <p className="text-[14.5px] sm:text-[16px] text-lt-muted leading-[1.75] mb-8">Whether you have a clear project in mind or just want to explore possibilities, we’re here to help. Most teams leave their first call with 2–3 practical automation ideas they can start using immediately.</p>
             {[
               { ico: '📧', strong: 'contact@cindrel.com', soft: 'Direct line to our team' },
               { ico: '📞', strong: '+91 93420 25655', soft: 'Mon–Fri, 9AM–6PM IST' },
               { ico: '💼', strong: 'LinkedIn', soft: 'linkedin.com/company/cindrel' },
-              { ico: '📍', strong: 'Chennai, Tamil Nadu, India', soft: 'Serving clients globally · Remote-first' },
+              { ico: '📍', strong: 'Global HQ', soft: 'Serving clients globally · Remote-first' },
             ].map(c => (
               <div key={c.strong} className="flex items-center gap-3.5 mb-4">
                 <div className="w-10 h-10 sm:w-[43px] sm:h-[43px] rounded-[10px] sm:rounded-[12px] bg-dk-bg border-[1.5px] border-white/15 flex items-center justify-center text-[15px] sm:text-[17px] flex-shrink-0">{c.ico}</div>
@@ -59,7 +60,14 @@ export default function ContactPage() {
             <div className="mt-6 sm:mt-8 p-5 sm:p-6 bg-dk-bg border-[1.5px] border-white/15 rounded-[16px] sm:rounded-[18px]">
               <div className="font-mono text-[9.5px] sm:text-[10px] tracking-[0.15em] uppercase text-dk-muted mb-3">What to expect</div>
               <ul className="space-y-2">
-                {['30-min video call with a senior engineer', 'Process mapping and opportunity discovery', 'Custom automation roadmap (yours to keep)', 'ROI estimate for top 3 opportunities', 'No sales pressure, ever'].map(item => (
+                {[
+                  '30-minute call with a senior automation expert',
+                  'Understand your current workflow and challenges',
+                  'Identify high-impact automation opportunities',
+                  'Get a clear, custom roadmap (yours to keep)',
+                  'Estimated ROI for top use cases',
+                  'No pressure. No hard selling.'
+                ].map(item => (
                   <li key={item} className="flex items-start gap-2.5 text-[13px] sm:text-[14px] text-dk-muted">
                     <span className="text-brand-cyan mt-0.5 flex-shrink-0">→</span>{item}
                   </li>
@@ -73,7 +81,7 @@ export default function ContactPage() {
             <div className="bg-dk-bg border-[1.5px] border-white/15 rounded-[24px] sm:rounded-[32px] p-6 sm:p-8 lg:p-11 relative overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.14)]">
               <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-brand-ind via-brand-cyan to-brand-vio" />
               <h3 className="font-heading font-bold text-[18px] sm:text-[20px] text-dk-text mb-1.5 tracking-[-0.3px]">Book Your Free Automation Audit</h3>
-              <p className="text-[13px] sm:text-[13.5px] text-dk-muted mb-6 sm:mb-7">Fill out the form and we'll reach out within 24 hours.</p>
+              <p className="text-[13px] sm:text-[13.5px] text-dk-muted mb-6 sm:mb-7">Tell us a bit about your business, and we’ll get back within 24 hours with the next steps.</p>
 
               {status === 'success' ? (
                 <div className="text-center py-14 sm:py-16">
@@ -84,14 +92,15 @@ export default function ContactPage() {
               ) : (
                 <form onSubmit={onSubmit}>
                   <div className="grid grid-cols-1 xs:grid-cols-2 gap-3 sm:gap-4">
-                    <div><label className={labelCls}>Your Name *</label><input name="name" value={form.name} onChange={onChange} required placeholder="Alex Johnson" className={inputCls} /></div>
-                    <div><label className={labelCls}>Company *</label><input name="company" value={form.company} onChange={onChange} required placeholder="Acme Corp" className={inputCls} /></div>
+                    <div><label className={labelCls}>Your Name *</label><input name="name" value={form.name} onChange={onChange} required placeholder="Enter your full name" className={inputCls} /></div>
+                    <div><label className={labelCls}>Company *</label><input name="company" value={form.company} onChange={onChange} required placeholder="Your company or startup name" className={inputCls} /></div>
                     <div><label className={labelCls}>Work Email *</label><input name="email" type="email" value={form.email} onChange={onChange} required placeholder="you@company.com" className={inputCls} /></div>
-                    <div><label className={labelCls}>Phone Number</label><input name="phone" value={form.phone} onChange={onChange} placeholder="+91 98765 43210" className={inputCls} /></div>
+                    <div><label className={labelCls}>Phone Number (Optional)</label><input name="phone" value={form.phone} onChange={onChange} placeholder="Optional" className={inputCls} /></div>
                   </div>
                   <div className="mt-3 sm:mt-4 mb-3 sm:mb-4">
                     <label className={labelCls}>Company Size</label>
                     <select name="companySize" value={form.companySize} onChange={onChange} className={inputCls}>
+                      <option disabled value="">Select team size</option>
                       {['1–10 employees', '11–50 employees', '51–200 employees', '200+ employees'].map(o => <option key={o}>{o}</option>)}
                     </select>
                   </div>
@@ -99,12 +108,14 @@ export default function ContactPage() {
                     <div className="mb-3 sm:mb-4">
                       <label className={labelCls}>Primary Automation Goal *</label>
                       <select name="goal" value={form.goal} onChange={onChange} className={inputCls}>
+                        <option disabled value="">What do you want to automate?</option>
                         {['CRM & Sales Automation', 'Customer Support AI', 'Marketing Automation', 'Data & Reporting', 'API Integration', 'AI Agent Development', 'Multiple / Not Sure'].map(o => <option key={o}>{o}</option>)}
                       </select>
                     </div>
                     <div>
-                      <label className={labelCls}>Budget Range</label>
+                      <label className={labelCls}>Budget Range (Optional)</label>
                       <select name="budget" value={form.budget} onChange={onChange} className={inputCls}>
+                        <option value="">Optional</option>
                         {['Under $2,000', '$2,000–$5,000', '$5,000–$15,000', '$15,000–$50,000', '$50,000+'].map(o => <option key={o}>{o}</option>)}
                       </select>
                     </div>

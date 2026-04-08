@@ -113,7 +113,7 @@ export function Modal({ isOpen, onClose, children }: { isOpen: boolean; onClose:
         className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-backdrop" 
         onClick={onClose} 
       />
-      <div className="relative bg-white rounded-[24px] shadow-2xl w-full max-w-[1300px] max-h-[90vh] overflow-y-auto animate-modal">
+      <div className="relative bg-white rounded-[24px] shadow-2xl w-full max-w-[1300px] animate-modal">
         <button 
           onClick={onClose}
           className="absolute top-4 right-4 p-2 rounded-full bg-black/5 hover:bg-black/10 transition-colors z-10"
@@ -123,7 +123,7 @@ export function Modal({ isOpen, onClose, children }: { isOpen: boolean; onClose:
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
         </button>
-        <div className="p-6 sm:p-10 md:p-12">
+        <div className="p-6 sm:p-10 md:p-12 max-h-[90vh] overflow-y-auto">
           {children}
         </div>
       </div>

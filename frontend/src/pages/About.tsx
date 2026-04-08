@@ -6,20 +6,21 @@ export function AboutPage() {
   return (
     <>
       <PageHero badge="About Cindrel"
-        title={<>We're Engineers Who<br />Refuse to Accept<br />Manual Work</>}
-        sub="Cindrel was founded on one belief: every hour your team spends on a repetitive task is an hour stolen from building something meaningful. We exist to give that time back — permanently." />
+        title={<>We Don’t Believe in <br />Manual Work — <br />And Neither Should You</>}
+        sub="At Cindrel, we believe your time should be spent on growth, not repetitive tasks. Every manual process slows you down — and we’re here to eliminate that completely. We design and build smart automation that works for you 24/7, so your team can focus on what truly matters — building, scaling, and winning." />
 
       {/* Story + Stats — white */}
       <section className="py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 bg-lt-bg">
         <div className="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-[72px] items-center">
           <Reveal>
             <Eyebrow>Our Story</Eyebrow>
-            <h2 className="font-heading font-extrabold leading-[1.1] tracking-[-1.2px] mb-4 text-lt-text" style={{ fontSize:'clamp(26px,3vw,44px)' }}>
+            <h2 className="font-heading font-extrabold leading-[1.1] tracking-[-1.2px] mb-4 text-lt-text" style={{ fontSize: 'clamp(26px,3vw,44px)' }}>
               Built by Automation Engineers,<br className="hidden sm:block" /> for Businesses That Mean Business
             </h2>
-            <p className="text-[14.5px] sm:text-[16px] text-lt-muted leading-[1.8] mb-4">Cindrel was born from frustration. Our founders spent years watching talented teams spending 30–40% of their time on tasks that computers should handle — copy-pasting between tools, running the same reports, manually following up on leads.</p>
-            <p className="text-[14.5px] sm:text-[16px] text-lt-muted leading-[1.8] mb-4">We built Cindrel to end that. Not just for one company, but to build the systems, frameworks, and expertise that can eliminate operational manual work across any business in any industry.</p>
-            <p className="text-[14.5px] sm:text-[16px] text-lt-muted leading-[1.8] mb-8">Today, Cindrel is one of India's leading AI automation consultancies — with clients across SaaS, e-commerce, healthcare, fintech, and enterprise sectors globally.</p>
+            <p className="text-[14.5px] sm:text-[16px] text-lt-muted leading-[1.8] mb-4">Cindrel was born out of frustration. We saw talented teams spending 30–40% of their time on work that should never be done manually — copying data, switching between tools, chasing follow-ups.</p>
+            <p className="text-[14.5px] sm:text-[16px] text-lt-muted leading-[1.8] mb-4">It wasn’t just inefficient — it was holding businesses back. So we built Cindrel to change that. Not just for one company, but to create systems, frameworks, and automation solutions that remove manual work from any business, in any industry.</p>
+            <p className="text-[14.5px] sm:text-[16px] text-lt-muted leading-[1.8] mb-8">Today, Cindrel helps companies across SaaS, e-commerce, healthcare, fintech, and enterprise sectors automate their operations, save time, and scale faster with confidence.</p>
+
             <div className="flex flex-wrap gap-3 mt-7">
               <Button href="/contact" variant="primary">Work With Us <span className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center text-[12px]">→</span></Button>
               <Button href="/cases" variant="ghost-lt">See Our Work</Button>
@@ -32,7 +33,7 @@ export function AboutPage() {
                 {ABOUT_STATS.map(s => (
                   <div key={s.n} className="bg-dk-surf border border-white/[0.08] rounded-[12px] sm:rounded-[14px] p-4 sm:p-5">
                     <div className="font-heading font-extrabold text-[26px] sm:text-[32px] tracking-[-0.8px]"
-                      style={{ background:'linear-gradient(135deg,#fff,#7b94ff)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent' }}>{s.n}</div>
+                      style={{ background: 'linear-gradient(135deg,#fff,#7b94ff)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{s.n}</div>
                     <div className="text-[12px] sm:text-[13px] text-dk-muted mt-1">{s.l}</div>
                   </div>
                 ))}

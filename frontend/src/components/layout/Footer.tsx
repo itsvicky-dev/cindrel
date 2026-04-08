@@ -5,7 +5,7 @@ const COLS = [
   { title:'Company',   links:[{l:'About Us',href:'/about'},{l:'Blog',href:'/blog'},{l:'Case Studies',href:'/cases'},{l:'Careers',href:'/contact'}] },
   { title:'Services',  links:[{l:'Workflow Automation',href:'/services'},{l:'AI Agents',href:'/services'},{l:'API Integrations',href:'/services'},{l:'Custom Dev',href:'/services'}] },
   { title:'Resources', links:[{l:'Automation Guides',href:'/blog'},{l:'Case Studies',href:'/cases'},{l:'ROI Calculator',href:'/'},{l:'Free Strategy Call',href:'/contact'}] },
-  { title:'Legal',     links:[{l:'Privacy Policy',href:'#'},{l:'Terms & Conditions',href:'#'},{l:'Cookie Policy',href:'#'},{l:'Contact Us',href:'/contact'}] },
+  { title:'Legal',     links:[{l:'Privacy Policy',href:'/privacy'},{l:'Terms & Conditions',href:'/terms'},{l:'Cookie Policy',href:'/cookies'},{l:'Contact Us',href:'/contact'}] },
 ]
 
 export default function Footer() {

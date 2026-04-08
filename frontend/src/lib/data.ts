@@ -73,17 +73,17 @@ export const INDUSTRIES = [
 
 // ─── Process ───────────────────────────────────
 export const PROCESS_STEPS = [
-  { num: '01', title: 'Discovery', desc: '30-min strategy session to map your processes, identify highest-ROI opportunities, and define system architecture.' },
-  { num: '02', title: 'Design', desc: 'We architect a clean, scalable automation blueprint — tool selection, data flow mapping, and integration design.' },
-  { num: '03', title: 'Build & Deploy', desc: 'Engineers build, test, and deploy your workflows with zero disruption — most live in 48–96 hours.' },
-  { num: '04', title: 'Optimize', desc: 'Post-launch monitoring, performance tuning, and quarterly reviews keep your systems at peak efficiency.' },
+  { num: '1-2', title: 'Discovery', desc: 'We understand your workflow, challenges, and find the best areas to automate for maximum impact.' },
+  { num: '3-5', title: 'Design', desc: 'We create a clear automation plan, choose the right tools, and map the full workflow.' },
+  { num: '6-10', title: 'Build & Deploy', desc: 'We build your automation, test it with real scenarios, and fine-tune everything.' },
+  { num: '11-14', title: 'Optimize', desc: 'We deploy your automation, monitor performance, and make sure everything runs smoothly.' },
 ]
 
 // ─── Case Studies (home) ───────────────────────
 export const CASE_STUDIES = [
-  { chip: 'SaaS · Sales', title: 'Automated Sales Pipeline for B2B SaaS', desc: 'Rebuilt lead-to-close with n8n + HubSpot. Every touchpoint automated — from first contact to signed contract, zero manual steps.', metric: '70%', metricLabel: 'Reduction in manual work within the first month' },
-  { chip: 'Enterprise · Support', title: 'AI Customer Support Automation', desc: 'GPT-4 triage engine integrated with Zendesk that classifies, responds, and resolves tier-1 tickets — fully autonomous.', metric: '60%', metricLabel: 'Faster response time — hours down to under 3 min' },
-  { chip: 'E-commerce · Growth', title: 'Behavioral Marketing System', desc: 'Trigger-based email, SMS, and retargeting that personalizes every touchpoint at every funnel stage — entirely on autopilot.', metric: '3×', metricLabel: 'Lead-to-customer conversion in 60 days post-launch' },
+  { chip: 'SaaS · Sales', title: 'AI-Powered Sales Automation', desc: 'We automate your entire sales process — from lead capture to follow-ups — so nothing gets missed.', metric: '70%', metricLabel: 'Less Manual Work More time to focus on closing deals, not managing tasks.' },
+  { chip: 'Enterprise · Support', title: 'Smart Customer Support Automation', desc: 'Handle customer queries instantly with AI — faster replies, less workload for your team.', metric: '60%', metricLabel: 'Faster Response Time Turn hours of waiting into instant support.' },
+  { chip: 'E-commerce · Growth', title: 'Automated Marketing That Converts', desc: 'Send the right message at the right time — automatically — across email, SMS, and more.', metric: '3×', metricLabel: 'More Conversions Turn more leads into paying customers.' },
 ]
 
 // ─── Why ────────────────────────────────────────
@@ -154,10 +154,156 @@ export const PRICING_PLANS = [
 
 // ─── Full Case Studies ─────────────────────────
 export const FULL_CASE_STUDIES = [
-  { tags: ['SaaS', 'Sales Automation', 'HubSpot + n8n'], title: 'End-to-End Sales Pipeline Automation for B2B SaaS', challenge: 'A B2B SaaS startup\'s 5-person team spent 40% of their time on manual CRM updates, follow-up scheduling, and proposals. Deal velocity was slow, leads falling through daily.', solution: 'Built a comprehensive n8n + HubSpot automation covering the entire lead-to-close journey — enrichment, scoring, routing, follow-up sequences, proposal generation, DocuSign contracts, and onboarding triggers.', metrics: [{ n: '70%', l: 'Manual work reduced' }, { n: '2.4×', l: 'Deal velocity' }, { n: '$380K', l: 'Annual savings' }], tools: ['n8n', 'HubSpot', 'DocuSign', 'Slack', 'OpenAI'] },
-  { tags: ['Enterprise', 'AI Support', 'GPT-4 + Zendesk'], title: 'AI-First Customer Support Transformation', challenge: 'An enterprise SaaS with 50,000+ users was drowning in tickets. 12-person team overwhelmed, 6-hour average response time, satisfaction declining.', solution: 'Deployed a GPT-4 triage system integrated with Zendesk — classifies tickets, auto-resolves common queries, generates draft responses, and escalates with full context.', metrics: [{ n: '60%', l: 'Faster response' }, { n: '45%', l: 'Auto-resolved' }, { n: '4.8★', l: 'CSAT score' }], tools: ['GPT-4', 'Zendesk', 'n8n', 'LangChain', 'Slack'] },
-  { tags: ['E-commerce', 'Marketing', 'Klaviyo + Make'], title: 'Full-Funnel Marketing Automation for D2C Brand', challenge: 'A D2C brand had great traffic but poor conversion. Marketing team was manually segmenting lists with no behavioral trigger sequences.', solution: 'Built a complete behavioral engine — browse abandonment, cart recovery with AI-personalized copy, post-purchase sequences, win-back campaigns, and loyalty tier automation.', metrics: [{ n: '3×', l: 'Conversion rate' }, { n: '42%', l: 'Cart recovery' }, { n: '+$1.2M', l: 'Annual revenue' }], tools: ['Make', 'Klaviyo', 'Shopify', 'Meta Ads API', 'OpenAI'] },
-  { tags: ['FinTech', 'Operations', 'Custom API Dev'], title: 'Automated Loan Underwriting Workflow', challenge: 'A fintech startup had a manual underwriting process taking 3–5 days per application. Loan officers pulled data from five separate systems manually.', solution: 'Built a custom automation pipeline that simultaneously fires API calls to credit bureaus, income verification, and fraud detection — generating a complete underwriting report in 90 seconds.', metrics: [{ n: '94%', l: 'Time reduction' }, { n: '90 sec', l: 'Decision speed' }, { n: '3×', l: 'Volume capacity' }], tools: ['Python', 'AWS Lambda', 'Salesforce', 'Custom API', 'Slack'] },
+  { 
+    tags: ['SaaS', 'Sales Automation'], 
+    title: 'SaaS – Sales Automation', 
+    challenge: 'The client was a growing B2B SaaS company where the sales team relied heavily on manual CRM updates, follow-ups, and proposal creation, which slowed down the overall sales cycle and created inconsistencies in deal tracking. As the volume of leads increased, the team struggled to maintain timely engagement, resulting in missed opportunities and reduced conversion efficiency across the pipeline.', 
+    solution: 'We introduced a structured automation layer on top of their existing CRM, streamlining lead capture, qualification, follow-ups, and contract workflows into a single connected system. This enabled the team to shift their focus from operational tasks to high-value sales activities, improving both productivity and pipeline visibility.', 
+    overview: 'The client is a growing B2B SaaS company with a lean 5-member sales team managing inbound and outbound leads through a CRM-driven process. While demand was increasing steadily, the team’s productivity was heavily impacted by manual operational work, limiting their ability to focus on revenue-generating activities.',
+    detailedChallenge: 'The sales process was highly dependent on manual effort at every stage of the pipeline. Sales representatives were responsible for updating CRM records, scheduling follow-ups, preparing proposals, and tracking deal progress across multiple tools. As lead volume increased, this approach became difficult to manage efficiently. Delays in follow-ups and inconsistent data updates started affecting deal movement and overall conversion rates.',
+    problems: [
+      'Nearly 40% of the team’s time was spent on manual CRM-related activities',
+      'Follow-ups were inconsistent, leading to missed or delayed engagement',
+      'Proposal creation required 20–30 minutes per deal',
+      'Lack of centralized visibility across the pipeline',
+      'Frequent context switching between 4–5 different tools'
+    ],
+    detailedSolution: 'To address these issues, we implemented a structured automation layer integrated with the client’s existing CRM (HubSpot) using n8n. The goal was to eliminate repetitive tasks without disrupting the current workflow. The automation system was designed to handle the entire lead-to-close journey in a seamless and connected manner.',
+    implementations: [
+      'Automated lead capture and enrichment from multiple channels',
+      'Rule-based lead scoring and intelligent assignment',
+      'Trigger-based follow-up sequences (email + reminders)',
+      'Dynamic proposal generation using predefined templates',
+      'Contract automation through DocuSign integration',
+      'Automated onboarding triggers after deal closure'
+    ],
+    impact: 'With automation in place, the sales team was able to significantly reduce operational workload and improve overall efficiency. Instead of spending time on repetitive tasks, the team focused on engaging with prospects and closing deals.',
+    metrics: [
+      { n: '70%', l: 'Reduction in manual CRM effort' }, 
+      { n: '2.4×', l: 'Faster deal progression' }, 
+      { n: '18%', l: 'Improvement in lead-to-close' },
+      { n: '$380K', l: 'Annual savings' }
+    ],
+    additionalOutcomes: [
+      'Improved consistency in follow-ups and communication',
+      'Better tracking and visibility of deal stages',
+      'Reduced dependency on manual data entry',
+      'Increased time spent on high-value sales activities'
+    ],
+    tools: ['n8n', 'HubSpot', 'DocuSign', 'OpenAI']
+  },
+  { 
+    tags: ['Enterprise', 'AI Support'], 
+    title: 'Enterprise – AI Support', 
+    challenge: 'The client was an enterprise SaaS platform serving over 50,000 users, where the support team faced increasing pressure due to high ticket volumes and repetitive customer queries. With an average response time of around six hours, the team struggled to maintain service quality, leading to delays and declining customer satisfaction.', 
+    solution: 'We implemented an AI-driven support system integrated with their existing helpdesk, enabling automated ticket classification, instant responses for common queries, and assisted replies for complex cases. This transformed their support operations into a scalable system, allowing the team to handle higher volumes efficiently while maintaining consistent response quality.', 
+    overview: 'The client is a large-scale enterprise SaaS platform with a user base exceeding 50,000 active users globally. Their customer support operations were managed by a 12-member team using Zendesk as the primary helpdesk system. As the product adoption increased, the volume of incoming support tickets grew rapidly, creating operational pressure and affecting response quality.',
+    detailedChallenge: 'The support workflow was entirely dependent on manual handling, where every ticket had to be read, categorized, prioritized, and responded to by human agents. While the team was capable, the system itself was not designed to scale with increasing demand. A significant portion of incoming tickets consisted of repetitive queries such as account issues, onboarding questions, and basic troubleshooting.',
+    problems: [
+      'Average response time increased to ~6 hours, especially during peak periods',
+      'Nearly 50% of tickets were repetitive, requiring similar responses',
+      'Manual triaging led to inconsistent prioritization',
+      'Ticket backlog increased during high traffic days',
+      'Customer satisfaction began to decline due to delayed responses'
+    ],
+    detailedSolution: 'To address these challenges, we implemented an AI-powered support system using GPT-4, fully integrated with their existing Zendesk setup. The objective was to introduce intelligence into the workflow without replacing the current infrastructure. The system was designed to act as the first layer of response, handling classification, resolution, and assistance.',
+    implementations: [
+      'Automated Ticket Classification: Every incoming ticket was analyzed using AI to identify intent and category.',
+      'Auto-Resolution for Repetitive Queries: FAQs were identified and handled automatically.',
+      'AI-Assisted Responses for Agents: Generated high-quality draft replies for complex tickets.',
+      'Smart Escalation with Context: Tickets escalated with complete context.',
+      'Internal Tagging & Prioritization: Ensured consistent tagging and routing.'
+    ],
+    impact: 'The implementation of AI significantly improved both operational efficiency and customer experience. The support team was no longer overwhelmed by repetitive tasks and could focus on high-value interactions. Response times improved immediately, and the consistency of communication increased.',
+    metrics: [
+      { n: '60%', l: 'Faster average response' }, 
+      { n: '45%', l: 'Tickets auto-resolved' }, 
+      { n: '30%', l: 'Reduction in workload' },
+      { n: '4.8★', l: 'Customer satisfaction' }
+    ],
+    additionalOutcomes: [
+      'Significant reduction in ticket backlog during peak periods',
+      'Improved agent productivity and reduced burnout',
+      'More consistent and accurate responses across queries',
+      'Ability to scale support without increasing team size'
+    ],
+    tools: ['GPT-4', 'Zendesk', 'n8n', 'LangChain']
+  },
+  { 
+    tags: ['E-commerce', 'Marketing'], 
+    title: 'E-commerce – Marketing Automation', 
+    challenge: 'The client was a D2C e-commerce brand experiencing strong website traffic but low conversion rates due to the absence of structured marketing automation and personalized engagement. Most campaigns were executed manually, with no behavioral triggers to engage users based on their actions.', 
+    solution: 'We built a full-funnel automation system that tracked user behavior in real time and triggered personalized communication across email and other channels. This approach allowed the brand to deliver the right message at the right time, significantly improving engagement and revenue generation.', 
+    overview: 'The client is a D2C e-commerce brand operating on Shopify, generating a steady flow of traffic through paid ads and organic channels. While acquisition was strong, the business faced challenges in converting visitors into customers and maximizing customer lifetime value.',
+    detailedChallenge: 'The marketing approach was largely manual and campaign-driven, with limited personalization or behavioral targeting. Users interacted with the platform, but there was no system in place to respond dynamically to their actions.',
+    problems: [
+      'Conversion rate remained low at around 1.2%',
+      'No cart abandonment recovery workflows',
+      'Lack of segmentation based on user behavior',
+      'Minimal engagement after purchase',
+      'No structured strategy for re-engaging inactive users'
+    ],
+    detailedSolution: 'We implemented a full-funnel marketing automation system using Klaviyo and Make, designed to trigger actions based on real-time user behavior. The system focused on delivering personalized communication at every stage of the customer journey.',
+    implementations: [
+      'Behavioral Tracking System: Captured user actions like browsing and purchases in real time.',
+      'Cart Abandonment Workflows: Automated reminders with personalized messaging.',
+      'AI-Personalized Campaigns: Tailored based on user preferences and behavior.',
+      'Post-Purchase Engagement: Follow-up sequences to improve experience.',
+      'Win-Back Campaigns: Targeted communication for inactive users.',
+      'Loyalty & Segmentation System: Categorized users based on activity and value.'
+    ],
+    impact: 'The automation significantly improved engagement across all stages of the funnel. Users received timely and relevant communication, leading to higher conversions and better retention. The marketing team also reduced manual workload.',
+    metrics: [
+      { n: '3×', l: 'Increase in conversion rate' }, 
+      { n: '42%', l: 'Cart recovery rate' }, 
+      { n: '27%', l: 'Increase in repeat purchases' },
+      { n: '$1.2M', l: 'Additional annual revenue' }
+    ],
+    additionalOutcomes: [
+      'Improved personalization across all touchpoints',
+      'Higher engagement rates in email and SMS',
+      'Better utilization of existing traffic',
+      'Increased customer lifetime value'
+    ],
+    tools: ['Klaviyo', 'Make', 'Shopify', 'OpenAI']
+  },
+  { 
+    tags: ['FinTech', 'Operations'], 
+    title: 'FinTech – Operations Automation', 
+    challenge: 'The client was a fintech startup managing loan underwriting through a manual process that required collecting and verifying data from multiple external systems, resulting in long turnaround times and operational bottlenecks.', 
+    solution: 'We developed a real-time automated underwriting system that integrated with all required data sources and processed applications through a unified workflow. This reduced dependency on manual intervention and enabled faster, more consistent decision-making across all applications.', 
+    overview: 'The client is a fintech startup offering loan services, where underwriting was a critical part of the business process. The system relied on multiple external data sources, making the workflow complex and time-consuming.',
+    detailedChallenge: 'The underwriting process was entirely manual, requiring loan officers to gather and verify data from multiple systems before making a decision. This created delays and limited scalability.',
+    problems: [
+      'Processing time of 3–5 days per application',
+      'Manual data collection from 4–5 external systems',
+      'High dependency on human intervention',
+      'Inconsistent evaluation speed across applications',
+      'Limited capacity to handle increasing demand'
+    ],
+    detailedSolution: 'We built a fully automated underwriting system using API integrations, designed to process applications in real time. The system handled multiple verification steps simultaneously.',
+    implementations: [
+      'Parallel Data Fetching: API integrations with credit bureaus and fraud systems.',
+      'Automated Data Validation: Ensured consistency and accuracy.',
+      'Risk Scoring Engine: Applied predefined rules to evaluate applications instantly.',
+      'Report Generation System: Generated complete underwriting reports in real time.',
+      'Monitoring & Alerts: Provided visibility into application status.'
+    ],
+    impact: 'The automation drastically reduced processing time and improved decision-making efficiency. Loan approvals became faster and more consistent, improving customer experience. The company scaled without increasing team size.',
+    metrics: [
+      { n: '94%', l: 'Reduction in processing time' }, 
+      { n: '90s', l: 'Decision speed' }, 
+      { n: '3×', l: 'Processing capacity' },
+      { n: '~22%', l: 'Reduction in errors' }
+    ],
+    additionalOutcomes: [
+      'Improved consistency in loan decisions',
+      'Better tracking of application status',
+      'Reduced manual effort for loan officers',
+      'Ability to scale volume with confidence'
+    ],
+    tools: ['Python', 'AWS Lambda', 'Custom APIs']
+  },
 ]
 
 // ─── Blog ──────────────────────────────────────
@@ -180,13 +326,14 @@ export const TEAM = [
 
 // ─── Values ────────────────────────────────────
 export const VALUES = [
-  { ico: '🎯', title: 'Our Mission', body: 'Simplify business operations through intelligent automation — helping every company run with the efficiency of a 10× larger organization.' },
-  { ico: '🔮', title: 'Our Vision', body: 'A world where every business runs with intelligent automated systems — freeing people to focus on creativity and strategy.' },
-  { ico: '⚡', title: 'Speed Without Compromise', body: 'We move fast but never cut corners. Our 48-hour goal drives systems that are fast to deliver and built to last.' },
-  { ico: '🔬', title: 'Engineering Excellence', body: 'We treat automation with software engineering rigor — clean architecture, comprehensive testing, thorough documentation.' },
-  { ico: '📊', title: 'Measurable Outcomes', body: 'Every engagement starts with success metrics. We only consider a project complete when we can show quantifiable impact.' },
-  { ico: '🤝', title: 'Long-Term Partnership', body: 'We build automation systems that grow with your business — and we\'re with you every step of the way.' },
+  { ico: '🎯', title: 'Our Mission', body: 'Make business operations simple with smart automation — so every company can run faster, smarter, and more efficiently.' },
+  { ico: '🔮', title: 'Our Vision', body: 'A world where businesses run on intelligent systems, and people focus only on creativity, strategy, and growth.' },
+  { ico: '⚡', title: 'Speed Without Compromise', body: 'We move fast — but never at the cost of quality. Quick delivery, built to last.' },
+  { ico: '🔬', title: 'Engineering Excellence', body: 'We build automation like real software — clean, reliable, and scalable. Every system is designed to perform, not just function.' },
+  { ico: '📊', title: 'Results That Matter', body: 'We don’t just deliver automation — we deliver impact. Every project is measured by real, visible results.' },
+  { ico: '🤝', title: 'Built for the Long Term', body: 'We don’t just build and leave. We create systems that grow with you — and support you at every stage.' },
 ]
+
 
 // ─── About Stats ───────────────────────────────
 export const ABOUT_STATS = [

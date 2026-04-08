@@ -8,7 +8,7 @@ import {
 } from '@/lib/data'
 import Logo from '../../assets/images/logo.svg'
 import { INR_RATE } from '@/lib/utils'
-import FreeAutomationImg from '@/assets/images/free_automation_illustration.png'
+import FreeAutomationImg from '@/assets/images/hero-2.jpg'
 
 /* ── Hero ─────────────────────────────────────── */
 export function HeroSection() {
@@ -135,8 +135,8 @@ export function HeroSection() {
 export function FreeAutomationSection() {
   return (
     <section className="bg-[linear-gradient(360deg,#EEF0FF_0%,#FFFFFF_100%)] py-16 sm:py-24 md:py-32 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 bg-lt-bg">
-      <div className="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-20 items-center">
-        <Reveal className='col-span-2'>
+      <div className="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-4 items-center">
+        <Reveal className='col-span-3'>
           <Eyebrow>WE OFFER</Eyebrow>
           <h2 className="font-heading font-extrabold leading-[1.08] tracking-[-1.5px] text-lt-text mb-6" style={{ fontSize: 'clamp(38px,5vw,72px)' }}>
             Start your first<br />
@@ -158,9 +158,9 @@ export function FreeAutomationSection() {
             <span className="text-[14px] sm:text-[15px] lg:text-[16px] text-lt-muted leading-[1.78]"> Built for your exact workflow </span>
           </div>
         </Reveal>
-        <Reveal delay={0.2} className="relative">
+        <Reveal delay={0.2} className="relative col-span-2">
           <div className="absolute inset-0 bg-gradient-to-tr from-brand-ind/10 to-brand-cyan/10 rounded-full blur-[100px] pointer-events-none" />
-          <img src={FreeAutomationImg} alt="Free Automation Illustration" className="relative w-full h-auto drop-shadow-2xl hover:scale-[1.02] transition-transform duration-700" />
+          <img src={FreeAutomationImg} alt="Free Automation Illustration" className="relative w-full h-auto drop-shadow-2xl hover:scale-[1.02] transition-transform duration-700 rounded-xl" />
         </Reveal>
       </div>
     </section>
@@ -265,8 +265,9 @@ export function IndustriesSection() {
       <div className="max-w-[1280px] mx-auto">
         <Reveal className="text-center mb-10 sm:mb-12">
           <Eyebrow center>Industries We Serve</Eyebrow>
-          <SectionHeading light center>Automation Expertise<br />Across Every Sector</SectionHeading>
-          <p className="text-[15px] sm:text-[17px] text-lt-muted leading-[1.78] mx-auto max-w-[520px] text-center">Battle-tested automation frameworks for diverse industries — from early-stage startups to large enterprises.</p>
+          <SectionHeading light center>Automation That Works<br />Across Every Industry</SectionHeading>
+          <p className="text-[15px] sm:text-[17px] text-lt-muted leading-[1.78] mx-auto max-w-[520px] text-center">We build automation that fits your business — no matter the industry or size.
+From startups to enterprises, our solutions are designed to solve real problems and deliver real results.</p>
         </Reveal>
         <div className="grid grid-cols-3 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2.5 sm:gap-3">
           {INDUSTRIES.map((ind, i) => (
@@ -297,7 +298,7 @@ export function ProcessSection() {
           <div className="hidden lg:block absolute top-[34px] left-[12%] right-[12%] h-px bg-gradient-to-r from-brand-ind via-brand-cyan to-brand-vio opacity-25 pointer-events-none" />
           {PROCESS_STEPS.map((step, i) => (
             <Reveal key={step.num} delay={i * 0.1} className="px-2 sm:px-[18px] text-center group">
-              <div className="w-14 h-14 sm:w-[68px] sm:h-[68px] rounded-full mx-auto mb-5 sm:mb-7 bg-dk-surf border-[1.5px] border-white/15 flex items-center justify-center font-heading font-extrabold text-[16px] sm:text-[18px] text-dk-text relative z-10 transition-all group-hover:bg-brand-ind group-hover:border-brand-ind group-hover:shadow-[0_0_28px_rgba(79,110,247,.45)]">{step.num}</div>
+              <div className="w-16 h-16 sm:w-[68px] sm:h-[68px] rounded-full mx-auto mb-5 sm:mb-7 bg-dk-surf border-[1.5px] border-white/15 flex flex-col items-center justify-center font-heading font-extrabold text-[16px] sm:text-[18px] text-dk-text relative z-10 transition-all group-hover:bg-brand-ind group-hover:border-brand-ind group-hover:shadow-[0_0_28px_rgba(79,110,247,.45)]"><span className='text-xs'>Day</span> {step.num}</div>
               <h3 className="font-heading font-bold text-[16px] sm:text-[18px] text-dk-text mb-2">{step.title}</h3>
               <p className="text-[13px] sm:text-[13.5px] text-dk-muted leading-[1.7]">{step.desc}</p>
             </Reveal>
@@ -313,7 +314,7 @@ export function ResultsSection() {
   return (
     <section className="py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 bg-lt-bg">
       <div className="max-w-[1280px] mx-auto">
-        <Reveal className="mb-10 sm:mb-14"><Eyebrow>Proven Results</Eyebrow><SectionHeading light>Automation That<br />Moves the Needle</SectionHeading></Reveal>
+        <Reveal className="mb-10 sm:mb-14"><Eyebrow>Proven Results</Eyebrow><SectionHeading light>Automation That <br />Actually Delivers Results</SectionHeading></Reveal>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
           {CASE_STUDIES.map((cs, i) => (
             <Reveal key={cs.chip} delay={i * 0.12}>
@@ -463,20 +464,21 @@ export function CtaSection() {
         <div className="absolute rounded-full blur-[80px] pointer-events-none animate-[blobDrift_15s_3s_ease-in-out_infinite_reverse]" style={{ width: 340, height: 340, bottom: '8%', right: '18%', background: 'radial-gradient(circle,rgba(0,212,240,.1) 0%,transparent 68%)' }} />
         <Reveal className="relative z-10 max-w-[740px] w-full">
           <div className="inline-flex items-center gap-2.5 bg-brand-ind/10 border border-brand-ind/28 rounded-full px-4 py-1.5 mb-6 font-mono text-[10px] sm:text-[11px] tracking-[0.1em] text-brand-ind2">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-pip" />Free 30-min strategy session · Zero commitment
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-pip" />Free 30-min Strategy Call · No Commitment
           </div>
           <h2 className="font-heading font-extrabold leading-[1.04] tracking-[-2px] sm:tracking-[-2.2px] text-dk-text mb-5" style={{ fontSize: 'clamp(34px,5.5vw,74px)' }}>
             Start Automating<br /><span className="text-grad-brand">Your Business Today</span>
           </h2>
-          <p className="text-[15px] sm:text-[16px] lg:text-[17px] text-dk-muted leading-[1.8] max-w-[560px] mx-auto mb-10 sm:mb-12">Book a free AI automation strategy call. We'll map your highest-ROI workflows, identify your biggest bottlenecks, and hand you a concrete action plan — completely free.</p>
+          <p className="text-[15px] sm:text-[16px] lg:text-[17px] text-dk-muted leading-[1.8] max-w-[560px] mx-auto mb-10 sm:mb-12">Book a free AI automation call and discover where you’re losing time and effort.
+            We’ll show you what to automate, how it works, and give you a clear plan to get started — at no cost.</p>
           <div className="flex flex-col xs:flex-row flex-wrap justify-center gap-3 sm:gap-3.5 mb-10 sm:mb-12">
             <Link to="/contact" className="relative inline-flex items-center justify-center gap-3 bg-white text-lt-text px-7 sm:px-10 py-4 sm:py-[18px] rounded-full font-body font-bold text-[15px] sm:text-[16px] overflow-hidden transition-all shadow-[0_4px_0_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.9)] hover:-translate-y-1 hover:shadow-[0_20px_56px_rgba(0,0,0,0.6),0_4px_0_rgba(0,0,0,0.4)]">
-              ⚡ Book a Free Strategy Call →
+              ⚡ Book Your Free Automation Call →
             </Link>
-            <Button href="/cases" variant="ghost-dk">View Case Studies</Button>
+            <Button href="/cases" variant="ghost-dk">View Real Use Cases</Button>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6">
-            {['No commitment', '30-min session', 'Custom roadmap', 'Senior engineer'].map((t, i, arr) => (
+            {['No commitment', '30-min session', 'Custom plan', 'Expert-built'].map((t, i, arr) => (
               <span key={t} className="flex items-center gap-1.5 sm:gap-2">
                 <span className="text-brand-cyan text-[13px] sm:text-[14px]">✓</span>
                 <span className="text-[12px] sm:text-[13px] text-dk-muted">{t}</span>
