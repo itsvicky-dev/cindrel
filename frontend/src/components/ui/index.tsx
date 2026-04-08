@@ -76,7 +76,7 @@ export function Reveal({ children, delay = 0, className }: { children: ReactNode
 }
 
 /* ── Page Hero (used by sub-pages) ─────────────── */
-export function PageHero({ badge, title, sub }: { badge: string; title: ReactNode; sub: string }) {
+export function PageHero({ badge, title, sub }: { badge: string; title: ReactNode; sub: ReactNode }) {
   return (
     <div className="relative bg-dk-bg overflow-hidden border-b border-white/[0.08]">
       <div className="absolute rounded-full blur-[80px] pointer-events-none"
@@ -91,7 +91,7 @@ export function PageHero({ badge, title, sub }: { badge: string; title: ReactNod
           style={{ fontSize: 'clamp(30px,4.5vw,62px)' }}>
           {title}
         </h1>
-        <p className="text-[15px] sm:text-[16px] lg:text-[17px] text-dk-muted max-w-[600px] leading-[1.75]">{sub}</p>
+        <div className="text-[15px] sm:text-[16px] lg:text-[17px] text-dk-muted max-w-[600px] leading-[1.75]">{sub}</div>
       </div>
     </div>
   )

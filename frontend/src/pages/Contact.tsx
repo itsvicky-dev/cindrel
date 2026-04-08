@@ -32,8 +32,18 @@ export default function ContactPage() {
     <>
       <PageHero badge="Free Strategy Session"
         title={<>Turn Your Workflow <br />into Automation Starting Today</>}
-        sub="Share your business goals and current processes with us.
- Within 24 hours, our team will give you a clear automation roadmap designed for your needs — no cost, no commitment." />
+        sub={
+          <>
+            <p className="mb-6">Share your business goals and current processes with us. Within 24 hours, our team will give you a clear automation roadmap designed for your needs — no cost, no commitment.</p>
+            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-brand-cyan/10 border border-brand-cyan/20 text-brand-cyan text-[13px] sm:text-[14px] font-medium">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-cyan opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-cyan"></span>
+              </span>
+              No commitment • Expert-built roadmap • Delivered in 24 hours
+            </div>
+          </>
+        } />
 
       {/* Contact — white */}
       <section className="py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 bg-lt-bg">
