@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Check, X } from 'lucide-react'
+import { Check, X, Zap, Bot, Link2, BarChart3, BrainCircuit, Mail } from 'lucide-react'
 import { Reveal, Eyebrow, SectionHeading, Button } from '@/components/ui'
 import {
   HERO_STATS, TRUSTED_BRANDS, SERVICES, USE_CASES, TOOLS,
@@ -13,18 +13,18 @@ import FreeAutomationImg from '@/assets/images/free_automation_illustration.png'
 /* ── Hero ─────────────────────────────────────── */
 export function HeroSection() {
   const NODES = [
-    { e: '⚡', top: '3%', left: '50%', ml: '-28px', bg: 'rgba(79,110,247,.2)', an: 'floatUp', ad: '4s' },
-    { e: '🤖', top: '21%', right: '2%', bg: 'rgba(0,212,240,.14)', an: 'floatDown', ad: '4.5s', adel: '.5s' },
-    { e: '🔗', bottom: '21%', right: '2%', bg: 'rgba(155,109,255,.2)', an: 'floatUp', ad: '4.2s', adel: '1s' },
-    { e: '📊', bottom: '3%', left: '50%', ml: '-28px', bg: 'rgba(79,110,247,.15)', an: 'floatDown', ad: '3.8s', adel: '.3s' },
-    { e: '🧠', bottom: '21%', left: '2%', bg: 'rgba(0,212,240,.12)', an: 'floatUp', ad: '4.8s', adel: '.7s' },
-    { e: '📧', top: '21%', left: '2%', bg: 'rgba(155,109,255,.15)', an: 'floatDown', ad: '4.3s', adel: '1.2s' },
+    { e: <Zap className="w-5 h-5 lg:w-6 lg:h-6 text-yellow-400" />, top: '-14%', left: '50%', ml: '-34px', bg: 'rgba(79,110,247,.2)', an: 'floatUp', ad: '4s' },
+    { e: <Bot className="w-5 h-5 lg:w-6 lg:h-6 text-brand-cyan" />, top: '10%', right: '-18%', bg: 'rgba(0,212,240,.14)', an: 'floatDown', ad: '4.5s', adel: '.5s' },
+    { e: <Link2 className="w-5 h-5 lg:w-6 lg:h-6 text-brand-vio" />, bottom: '10%', right: '-18%', bg: 'rgba(155,109,255,.2)', an: 'floatUp', ad: '4.2s', adel: '1s' },
+    { e: <BarChart3 className="w-5 h-5 lg:w-6 lg:h-6 text-blue-400" />, bottom: '-14%', left: '50%', ml: '-34px', bg: 'rgba(79,110,247,.15)', an: 'floatDown', ad: '3.8s', adel: '.3s' },
+    { e: <BrainCircuit className="w-5 h-5 lg:w-6 lg:h-6 text-brand-cyan" />, bottom: '10%', left: '-18%', bg: 'rgba(0,212,240,.12)', an: 'floatUp', ad: '4.8s', adel: '.7s' },
+    { e: <Mail className="w-5 h-5 lg:w-6 lg:h-6 text-brand-ind" />, top: '10%', left: '-18%', bg: 'rgba(155,109,255,.15)', an: 'floatDown', ad: '4.3s', adel: '1.2s' },
   ]
   return (
-    <section className="relative min-h-screen flex items-center pt-16 sm:pt-[70px] lg:pt-[78px] bg-dk-bg overflow-hidden">
+    <section className="relative min-h-screen flex items-center pt-16 sm:pt-[70px] lg:pt-[108px] bg-dk-bg overflow-hidden">
       <div className="hero-grid pointer-events-none" />
       {/* Blobs */}
-      <div className="absolute rounded-full blur-[90px] pointer-events-none mix-blend-screen animate-blob"
+      {/* <div className="absolute rounded-full blur-[90px] pointer-events-none mix-blend-screen animate-blob"
         style={{
           width: 'clamp(260px,55vw,700px)', height: 'clamp(220px,45vw,550px)', top: -80, right: -60,
           background: 'radial-gradient(circle,rgba(79,110,247,.22) 0%,transparent 65%)'
@@ -33,7 +33,7 @@ export function HeroSection() {
         style={{
           width: 'clamp(200px,45vw,500px)', height: 'clamp(160px,38vw,420px)', bottom: -70, left: -50,
           background: 'radial-gradient(circle,rgba(155,109,255,.15) 0%,transparent 65%)'
-        }} />
+        }} /> */}
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-4 sm:px-6 md:px-8 lg:px-0 py-12 lg:py-0 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-16 xl:gap-18 items-center">
@@ -51,13 +51,13 @@ export function HeroSection() {
             <div className="flex flex-wrap gap-3 justify-center lg:justify-start"
               style={{ animation: 'fadeSlideUp .8s .3s ease both' }}>
               <Button href="/contact" variant="primary">
-                Get Your First Automation Free
+                Get Your First Free Automation
                 <span className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center text-[12px]">→</span>
               </Button>
               <Button href="/services" variant="ghost-dk">Explore Services</Button>
             </div>
             {/* Stats */}
-            <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-4 sm:gap-6 mt-10 pt-8 mb-10 border-t border-white/[0.08]"
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-4 sm:gap-6 mt-10 pt-8 border-t border-white/[0.08]"
               style={{ animation: 'fadeSlideUp .8s .4s ease both' }}>
               {HERO_STATS.map((s, i) => (
                 <div key={s.num} className="flex items-center gap-4 sm:gap-6">
@@ -72,26 +72,31 @@ export function HeroSection() {
           </div>
           {/* Orb */}
           <div className="flex justify-center" style={{ animation: 'fadeSlideUp 1s .5s ease both' }}>
-            <div className="relative w-full aspect-square" style={{ maxWidth: 'clamp(260px,50vw,490px)' }}>
+            <div className="relative w-full aspect-square" style={{ maxWidth: 'clamp(320px,60vw,650px)' }}>
               {/* Rings */}
-              {[{ s: 248, b: 'rgba(79,110,247,.22)', d: '20s' }, { s: 348, b: 'rgba(0,212,240,.09)', d: '30s', r: true }, { s: 448, b: 'rgba(155,109,255,.07)', d: '42s' }].map(({ s, b, d, r }, i) => (
+              {/* {[{ s: 248, b: 'rgba(79,110,247,.22)', d: '20s' }, { s: 348, b: 'rgba(0,212,240,.09)', d: '30s', r: true }, { s: 448, b: 'rgba(155,109,255,.07)', d: '42s' }].map(({ s, b, d, r }, i) => (
                 <div key={i} className="absolute rounded-full" style={{ width: s, height: s, top: '50%', left: '50%', marginLeft: -s / 2, marginTop: -s / 2, border: `1px solid ${b}`, animation: `spin ${d} linear infinite${r ? ' reverse' : ''}` }} />
-              ))}
+              ))} */}
               {/* SVG lines */}
-              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 490 490">
+              <svg className="absolute inset-0 w-full h-full overflow-visible" viewBox="0 0 490 490">
                 <defs>
                   <linearGradient id="cg" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#4f6ef7" stopOpacity="0.9" />
                     <stop offset="100%" stopColor="#00d4f0" stopOpacity="0.9" />
                   </linearGradient>
                 </defs>
-                {[[245, 112, 245, 245, '0s'], [378, 180, 245, 245, '.5s'], [378, 315, 245, 245, '1s'], [245, 382, 245, 245, '1.5s'], [112, 315, 245, 245, '.3s'], [112, 180, 245, 245, '.8s']].map(([x1, y1, x2, y2, delay], i) => (
+                {/* Connection Rings */}
+                <circle cx="245" cy="245" r="330" fill="none" stroke="rgba(79,110,247,0.15)" strokeWidth="1" strokeDasharray="4 8" style={{ animation: 'spin 40s linear infinite' }} />
+                <circle cx="245" cy="245" r="330" fill="none" stroke="url(#cg)" strokeWidth="1" strokeOpacity="0.2" />
+                <circle cx="245" cy="245" r="210" fill="none" stroke="rgba(0,212,240,0.1)" strokeWidth="1" strokeDasharray="2 6" style={{ animation: 'spin 30s linear infinite reverse' }} />
+
+                {[[245, 10, 245, 245, '0s'], [480, 120, 245, 245, '.5s'], [480, 370, 245, 245, '1s'], [245, 480, 245, 245, '1.5s'], [10, 370, 245, 245, '.3s'], [10, 120, 245, 245, '.8s']].map(([x1, y1, x2, y2, delay], i) => (
                   <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} className="conn-line" style={{ animationDelay: delay as string }} />
                 ))}
               </svg>
               {/* Core */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] lg:w-[158px] lg:h-[158px] rounded-full flex items-center justify-center z-10"
-                style={{ background: 'radial-gradient(circle at 35% 35%,rgba(79,110,247,.6),rgba(79,110,247,.07) 65%,transparent)', boxShadow: '0 0 55px rgba(79,110,247,.4),0 0 110px rgba(79,110,247,.1),inset 0 0 32px rgba(0,212,240,.13)', border: '1px solid rgba(79,110,247,.44)' }}>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140px] h-[140px] sm:w-[180px] sm:h-[180px] lg:w-[320px] lg:h-[320px] rounded-full flex items-center justify-center z-10"
+                style={{ background: 'radial-gradient(circle at 35% 35%,rgba(79,110,247,.6),rgba(79,110,247,.07) 65%,transparent)', boxShadow: '0 0 65px rgba(79,110,247,.45),0 0 130px rgba(79,110,247,.1),inset 0 0 42px rgba(0,212,240,.15)', border: '1px solid rgba(79,110,247,.44)' }}>
                 <div className="text-center">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-[54px] lg:h-[54px] mx-auto mb-1"><img src={Logo} alt="Logo" className="w-full h-full object-contain" /></div>
                   <span className="font-mono text-[7px] sm:text-[8px] text-brand-cyan tracking-[2px] uppercase">AI Core</span>
@@ -99,19 +104,19 @@ export function HeroSection() {
               </div>
               {/* Nodes */}
               {NODES.map(({ e, an, ad, adel, ...pos }, i) => (
-                <div key={i} className="absolute w-10 h-10 sm:w-12 sm:h-12 lg:w-[56px] lg:h-[56px] rounded-[12px] lg:rounded-[14px] backdrop-blur-md border border-white/10 flex items-center justify-center text-[16px] sm:text-[18px] lg:text-[20px] z-20 shadow-[0_4px_20px_rgba(0,0,0,0.45)]"
+                <div key={i} className="absolute w-12 h-12 sm:w-14 sm:h-14 lg:w-[68px] lg:h-[68px] rounded-[15px] lg:rounded-[18px] backdrop-blur-md border border-white/10 flex items-center justify-center text-[18px] sm:text-[20px] lg:text-[24px] z-20 shadow-[0_6px_25px_rgba(0,0,0,0.5)]"
                   style={{ ...pos, background: pos.bg, animation: `${an} ${ad}${adel ? ` ${adel}` : ''} ease-in-out infinite` } as React.CSSProperties}>
                   {e}
                 </div>
               ))}
               {/* Micro cards */}
-              <div className="hidden xs:block absolute top-[7%] right-[-6%] sm:right-[-9%] bg-white/5 border border-white/[0.14] rounded-[12px] px-3 py-2.5 sm:px-4 sm:py-3 backdrop-blur-md z-30 min-w-[120px] sm:min-w-[145px] shadow-[0_8px_26px_rgba(0,0,0,0.4)]"
+              <div className="hidden xs:block absolute top-[2%] right-[-18%] sm:right-[-25%] bg-white/5 border border-white/[0.14] rounded-[12px] px-3 py-2.5 sm:px-4 sm:py-3 backdrop-blur-md z-30 min-w-[120px] sm:min-w-[145px] shadow-[0_8px_26px_rgba(0,0,0,0.4)]"
                 style={{ animation: 'floatUp 5s .5s ease-in-out infinite' }}>
                 <div className="font-mono text-[8px] sm:text-[9px] text-dk-muted tracking-[2px] uppercase mb-1">Tasks Automated</div>
                 <div className="font-heading font-bold text-[16px] sm:text-[20px] text-green-400">+2,840</div>
                 <div className="flex gap-1 mt-1.5">{[1, 1, 1, 0].map((f, i) => <div key={i} className={`h-[3px] flex-1 rounded-[2px] ${f ? 'bg-gradient-to-r from-brand-ind to-brand-cyan' : 'bg-white/12'}`} />)}</div>
               </div>
-              <div className="hidden xs:block absolute bottom-[10%] left-[-6%] sm:left-[-7%] bg-white/5 border border-white/[0.14] rounded-[12px] px-3 py-2.5 sm:px-4 sm:py-3 backdrop-blur-md z-30 min-w-[120px] sm:min-w-[145px] shadow-[0_8px_26px_rgba(0,0,0,0.4)]"
+              <div className="hidden xs:block absolute bottom-[2%] left-[-18%] sm:left-[-25%] bg-white/5 border border-white/[0.14] rounded-[12px] px-3 py-2.5 sm:px-4 sm:py-3 backdrop-blur-md z-30 min-w-[120px] sm:min-w-[145px] shadow-[0_8px_26px_rgba(0,0,0,0.4)]"
                 style={{ animation: 'floatDown 5.5s 1s ease-in-out infinite' }}>
                 <div className="font-mono text-[8px] sm:text-[9px] text-dk-muted tracking-[2px] uppercase mb-1">Live Workflows</div>
                 <div className="font-heading font-bold text-[16px] sm:text-[20px] text-brand-cyan">47 active</div>
@@ -138,13 +143,19 @@ export function FreeAutomationSection() {
             <span className="text-grad-result">Automation for Free</span>
           </h2>
           <p className="text-[15px] sm:text-[16px] lg:text-[18px] text-lt-muted leading-[1.78] mb-10 max-w-[540px]">
-            Best-in-class tools combined with custom engineering — picking the exact right instrument for every workflow and orchestrating them in perfect harmony.
+            Automate repetitive tasks, save hours every week, and scale your workflow effortlessly.
+            We design and build the right AI automation tailored to your business — so you can focus on what truly matters.
           </p>
           <div className="flex flex-wrap gap-4">
             <Button href="/contact" variant="solid-dk" className="px-8 py-2">
-              Book your Slot
+              Book Your Free Automation Slot
               <span className="w-7 h-7 bg-white/20 rounded-full flex items-center justify-center text-[14px]">→</span>
             </Button>
+          </div>
+          <div className="mt-6">
+            <span className="text-[14px] sm:text-[15px] lg:text-[16px] text-lt-muted leading-[1.78]"> No upfront cost | </span>
+            <span className="text-[14px] sm:text-[15px] lg:text-[16px] text-lt-muted leading-[1.78]"> No commitment | </span>
+            <span className="text-[14px] sm:text-[15px] lg:text-[16px] text-lt-muted leading-[1.78]"> Built for your exact workflow </span>
           </div>
         </Reveal>
         <Reveal delay={0.2} className="relative">
@@ -334,11 +345,11 @@ export function WhySection() {
   const savingsUSD = team * hours * 52 * rate * 0.7
   const savingsINR = savingsUSD * INR_RATE
   const mainDisplay = cur === 'usd'
-    ? '$' + savingsUSD.toLocaleString('en-US', { maximumFractionDigits: 0 })
-    : '₹' + savingsINR.toLocaleString('en-IN', { maximumFractionDigits: 0 })
+    ? '$ ' + savingsUSD.toLocaleString('en-US', { maximumFractionDigits: 0 })
+    : '₹ ' + savingsINR.toLocaleString('en-IN', { maximumFractionDigits: 0 })
   const altDisplay = cur === 'usd'
-    ? '≈ ₹' + savingsINR.toLocaleString('en-IN', { maximumFractionDigits: 0 })
-    : '≈ $' + savingsUSD.toLocaleString('en-US', { maximumFractionDigits: 0 })
+    ? '≈ ₹ ' + savingsINR.toLocaleString('en-IN', { maximumFractionDigits: 0 })
+    : '≈ $ ' + savingsUSD.toLocaleString('en-US', { maximumFractionDigits: 0 })
 
   const trackBg = (val: number, min: number, max: number) => {
     const pct = ((val - min) / (max - min)) * 100

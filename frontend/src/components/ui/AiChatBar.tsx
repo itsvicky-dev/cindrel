@@ -28,7 +28,7 @@ const PLACEHOLDERS: Record<string, string> = {
 }
 
 function escHtml(s: string) {
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 }
 function fmtReply(t: string) {
   return t
@@ -39,23 +39,23 @@ function fmtReply(t: string) {
 }
 
 export default function AiChatBar() {
-  const [open,       setOpen]       = useState(false)
-  const [input,      setInput]      = useState('')
-  const [messages,   setMessages]   = useState<Msg[]>([{
+  const [open, setOpen] = useState(false)
+  const [input, setInput] = useState('')
+  const [messages, setMessages] = useState<Msg[]>([{
     role: 'bot',
     html: "👋 Hi! I'm Cindrel AI, your automation assistant. Ask me anything about workflow automation, n8n, Zapier, AI agents, pricing, or how Cindrel can help your business!",
   }])
-  const [typing,     setTyping]     = useState(false)
-  const [showChips,  setShowChips]  = useState(true)
-  const [lang,       setLang]       = useState('en')
-  const [listening,  setListening]  = useState(false)
+  const [typing, setTyping] = useState(false)
+  const [showChips, setShowChips] = useState(true)
+  const [lang, setLang] = useState('en')
+  const [listening, setListening] = useState(false)
   const chatHistory = useRef<{ role: string; content: string }[]>([
     { role: 'assistant', content: "👋 Hi! I'm Cindrel AI, your automation assistant. Ask me anything about workflow automation, n8n, Zapier, AI agents, pricing, or how Cindrel can help your business!" }
   ])
   const messagesRef = useRef<HTMLDivElement>(null)
-  const inputRef    = useRef<HTMLInputElement>(null)
-  const wrapRef     = useRef<HTMLDivElement>(null)
-  const recog       = useRef<SpeechRecognition | null>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const wrapRef = useRef<HTMLDivElement>(null)
+  const recog = useRef<SpeechRecognition | null>(null)
 
   const scrollBottom = useCallback(() => {
     setTimeout(() => {
@@ -108,7 +108,7 @@ export default function AiChatBar() {
       try {
         const apiUrl = import.meta.env.VITE_API_URL || '';
         const fetchUrl = `${apiUrl}/ai/chat`.replace(/\/+ai/, '/ai');
-        
+
         const res = await fetch(fetchUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -117,12 +117,12 @@ export default function AiChatBar() {
             history: chatHistory.current.slice(0, -1)
           }),
         })
-        
+
         if (!res.ok) throw new Error('API call failed')
 
         const data = await res.json()
         const botReply = data.response ?? "I'm having a moment — please try again or reach us at hello@cindrel.com 😊"
-        
+
         chatHistory.current.push({ role: 'assistant', content: botReply })
         setMessages(prev => [...prev, { role: 'bot', html: fmtReply(botReply) }])
       } catch (err) {
@@ -145,10 +145,10 @@ export default function AiChatBar() {
     const r = new SR()
     r.lang = { hi: 'hi-IN', ta: 'ta-IN', te: 'te-IN' }[lang] ?? 'en-US'
     r.continuous = false; r.interimResults = false
-    r.onstart  = () => setListening(true)
+    r.onstart = () => setListening(true)
     r.onresult = (e) => { setInput(e.results[0][0].transcript); setListening(false); sendMessage(e.results[0][0].transcript) }
-    r.onerror  = () => setListening(false)
-    r.onend    = () => setListening(false)
+    r.onerror = () => setListening(false)
+    r.onend = () => setListening(false)
     r.start(); recog.current = r
   }
 
@@ -164,20 +164,22 @@ export default function AiChatBar() {
       {/* Chat Window */}
       <div id="ai-chat-window" className={open ? 'open' : ''}>
         {/* Header */}
-        <div className="flex items-center justify-between px-4 sm:px-5 py-3.5 border-b border-black/[0.07]"
+        <div className="flex justify-between items-center border-b border-black/[0.07]"
           style={{ background: 'linear-gradient(135deg,rgba(79,110,247,.05),rgba(0,212,240,.03))' }}>
-          <div className="flex items-center gap-2.5">
-            <div className="w-[34px] h-[34px] rounded-full bg-gradient-to-br from-brand-ind to-brand-vio flex items-center justify-center text-[16px] flex-shrink-0">🤖</div>
-            <div>
-              <div className="font-heading font-bold text-[14px] text-lt-text">Cindrel AI</div>
-              <div className="flex items-center gap-1.5 text-[11.5px] text-lt-muted mt-0.5">
-                <span className="w-[6px] h-[6px] rounded-full bg-green-500" style={{ boxShadow: '0 0 5px rgba(34,197,94,.7)' }} />
-                Online · Automation Expert
+          <div className="max-w-[800px] mx-auto w-full flex items-center justify-between px-4 sm:px-5 py-3.5">
+            <div className="flex items-center gap-2.5">
+              <div className="w-[34px] h-[34px] rounded-full bg-gradient-to-br from-brand-ind to-brand-vio flex items-center justify-center text-[16px] flex-shrink-0">🤖</div>
+              <div>
+                <div className="font-heading font-bold text-[14px] text-lt-text">Cindrel AI</div>
+                <div className="flex items-center gap-1.5 text-[11.5px] text-lt-muted mt-0.5">
+                  <span className="w-[6px] h-[6px] rounded-full bg-green-500" style={{ boxShadow: '0 0 5px rgba(34,197,94,.7)' }} />
+                  Online · Automation Expert
+                </div>
               </div>
             </div>
           </div>
           <button onClick={() => setOpen(false)}
-            className="w-7 h-7 rounded-full bg-black/[0.06] border-none flex items-center justify-center text-lt-muted hover:bg-black/10 hover:text-lt-text transition-colors text-[15px]">
+            className="w-7 h-7 mx-2 rounded-full bg-black/[0.06] border-none flex items-center justify-center text-lt-muted hover:bg-black/10 hover:text-lt-text transition-colors text-[15px]">
             ✕
           </button>
         </div>
@@ -185,7 +187,7 @@ export default function AiChatBar() {
         {/* Messages */}
         <div ref={messagesRef} id="ai-messages" className="flex-1 overflow-y-auto p-4 sm:p-[18px] flex flex-col gap-3">
           {messages.map((m, i) => (
-            <div key={i} className={`ai-msg-in flex gap-2.5 ${m.role === 'user' ? 'flex-row-reverse' : ''} items-start`}>
+            <div key={i} className={`ai-msg-in flex gap-2.5 ${m.role === 'user' ? 'flex-row-reverse' : ''} items-start w-full max-w-[800px] mx-auto`}>
               <div className={`w-7 h-7 rounded-full flex-shrink-0 flex items-center justify-center font-heading font-bold text-[12px] text-white mt-0.5 ${m.role === 'bot' ? 'bg-gradient-to-br from-brand-ind to-brand-vio' : 'bg-gradient-to-br from-[#1a1d2e] to-[#2d3354]'}`}>
                 {m.role === 'bot' ? 'C' : 'U'}
               </div>
@@ -194,7 +196,7 @@ export default function AiChatBar() {
             </div>
           ))}
           {typing && (
-            <div className="flex gap-2.5 items-start ai-msg-in">
+            <div className="flex gap-2.5 items-start ai-msg-in w-full max-w-[800px] mx-auto">
               <div className="w-7 h-7 rounded-full flex-shrink-0 flex items-center justify-center font-heading font-bold text-[12px] text-white mt-0.5 bg-gradient-to-br from-brand-ind to-brand-vio">C</div>
               <div className="bg-[#f4f5fb] border border-black/[0.06] rounded-2xl rounded-bl-[4px] px-4 py-3 flex gap-1.5 items-center">
                 <div className="t-dot" /><div className="t-dot" /><div className="t-dot" />
@@ -205,13 +207,15 @@ export default function AiChatBar() {
 
         {/* Suggestion chips */}
         {showChips && (
-          <div className="flex flex-wrap gap-1.5 px-4 sm:px-[18px] py-3 border-t border-black/[0.05]">
-            {SUGGESTIONS.map(s => (
-              <button key={s} onClick={(e) => { e.stopPropagation(); sendMessage(s) }}
-                className="px-3 py-1.5 rounded-full border-[1.5px] border-brand-ind/20 bg-brand-ind/4 text-brand-ind font-body text-[12px] transition-all hover:bg-brand-ind/11 hover:border-brand-ind whitespace-nowrap">
-                {s}
-              </button>
-            ))}
+          <div className="border-t border-black/[0.05] py-3">
+            <div className="max-w-[800px] mx-auto flex flex-wrap gap-1.5 px-4 sm:px-[18px]">
+              {SUGGESTIONS.map(s => (
+                <button key={s} onClick={(e) => { e.stopPropagation(); sendMessage(s) }}
+                  className="px-3 py-1.5 rounded-full border-[1.5px] border-brand-ind/20 bg-brand-ind/4 text-brand-ind font-body text-[12px] transition-all hover:bg-brand-ind/11 hover:border-brand-ind whitespace-nowrap">
+                  {s}
+                </button>
+              ))}
+            </div>
           </div>
         )}
       </div>
@@ -244,7 +248,7 @@ export default function AiChatBar() {
           {/* Language */}
           <select value={lang} onChange={e => { setLang(e.target.value); setInput(''); inputRef.current?.focus() }}
             className="ai-lang-select px-2.5 pr-5 py-1.5 rounded-full border border-black/10 bg-transparent font-body text-[12.5px] font-medium text-[#5c6278] appearance-none transition-all hover:bg-brand-ind/6 hover:border-brand-ind/28 hover:text-brand-ind"
-            style={{ backgroundImage:`url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%239ba3b8' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`, backgroundRepeat:'no-repeat', backgroundPosition:'right 6px center' }}>
+            style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%239ba3b8' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 6px center' }}>
             <option value="en">EN</option>
             <option value="hi">HI</option>
             <option value="ta">TA</option>
@@ -255,9 +259,9 @@ export default function AiChatBar() {
           <button onClick={toggleMic}
             className={`w-9 h-9 rounded-full border flex items-center justify-center transition-all ${listening ? 'bg-red-500/8 border-red-400/40 text-red-500 animate-[micPulse_1s_infinite]' : 'border-black/10 text-[#9ba3b8] hover:bg-brand-ind/7 hover:border-brand-ind/3 hover:text-brand-ind'}`}>
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
-              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-              <line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/>
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+              <line x1="12" y1="19" x2="12" y2="23" /><line x1="8" y1="23" x2="16" y2="23" />
             </svg>
           </button>
 
@@ -265,7 +269,7 @@ export default function AiChatBar() {
           <button onClick={() => sendMessage()} disabled={!input.trim() || typing}
             className="w-9 h-9 rounded-full bg-gradient-to-br from-brand-ind to-brand-vio border-none flex items-center justify-center text-white transition-all hover:scale-110 hover:shadow-[0_4px_22px_rgba(79,110,247,.6)] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              <line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" />
             </svg>
           </button>
         </div>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Phone } from 'lucide-react'
 import Logo from '../../assets/images/logo.svg'
 import { NAV_LINKS } from '@/lib/data'
 import { cn } from '@/lib/utils'
@@ -51,7 +51,17 @@ export default function Navbar() {
         </nav>
 
         {/* CTA + Hamburger */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 md:gap-6">
+          <a href="tel:+919342025655" className="hidden lg:flex items-center gap-2 group">
+            <div className="w-8 h-8 rounded-full bg-white/[0.04] border border-white/[0.1] flex items-center justify-center text-dk-muted group-hover:bg-brand-ind/10 group-hover:border-brand-ind/30 group-hover:text-brand-ind transition-all duration-300">
+              <Phone size={14} className="fill-current" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-dk leading-none mb-0.5">Call Us</span>
+              <span className="text-[13px] font-medium text-dk-text group-hover:text-brand-ind transition-colors">+91 93420 25655</span>
+            </div>
+          </a>
+
           <Link to="/contact"
             className="hidden sm:flex items-center gap-1.5 bg-brand-ind text-white px-4 py-2.5 sm:px-5 sm:py-3 rounded-full font-body text-[13px] sm:text-[13.5px] font-semibold transition-all hover:bg-brand-ind2 hover:-translate-y-px hover:shadow-[0_8px_24px_rgba(79,110,247,.45)]">
             Apply for Free Automation <span className="hidden md:inline">→</span>
@@ -87,9 +97,19 @@ export default function Navbar() {
               </Link>
             ))}
           </nav>
-          <div className="px-6 pb-8">
+          <div className="px-6 py-4 flex flex-col gap-4 border-t border-white/[0.08] mt-auto">
+            <a href="tel:+919342025655" className="flex items-center gap-3 p-4 rounded-xl bg-white/[0.04] border border-white/[0.08] group overflow-hidden relative">
+              <div className="absolute inset-0 bg-brand-ind/5 translate-y-full group-active:translate-y-0 transition-transform duration-300" />
+              <div className="w-10 h-10 rounded-full bg-brand-ind/10 flex items-center justify-center text-brand-ind relative z-10">
+                <Phone size={18} fill="currentColor" fillOpacity={0.2} />
+              </div>
+              <div className="relative z-10">
+                <span className="block text-[10px] font-mono uppercase tracking-widest text-dk-dim mb-0.5">Direct Line</span>
+                <span className="block text-[15px] font-semibold text-dk-text">+91 93420 25655</span>
+              </div>
+            </a>
             <Link to="/contact" onClick={() => setMobileOpen(false)}
-              className="block w-full text-center bg-brand-ind text-white py-4 rounded-full font-body font-semibold text-[15px] transition-all hover:bg-brand-ind2">
+              className="block w-full text-center bg-brand-ind text-white py-4 rounded-full font-body font-semibold text-[15px] transition-all active:scale-[0.98] shadow-lg shadow-brand-ind/20">
               Book a Free Call →
             </Link>
           </div>

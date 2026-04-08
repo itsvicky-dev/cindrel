@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { Reveal, Eyebrow, SectionHeading, Button, PageHero } from '@/components/ui'
 import { PRICING_PLANS } from '@/lib/data'
 import { Check, X } from 'lucide-react'
@@ -12,6 +13,19 @@ const DETAILS = [
 ]
 
 export default function ServicesPage() {
+  const [currency, setCurrency] = useState<'USD' | 'INR'>('INR')
+
+  useEffect(() => {
+    fetch('https://ipapi.co/json/')
+      .then(res => res.json())
+      .then(data => {
+        if (data.country_code && data.country_code !== 'IN') {
+          setCurrency('USD')
+        }
+      })
+      .catch(() => setCurrency('INR'))
+  }, [])
+
   return (
     <>
       <PageHero badge="AI Automation Services"
@@ -27,7 +41,6 @@ export default function ServicesPage() {
               <Reveal key={s.num} delay={(i % 2) * 0.1}>
                 <div className="group bg-lt-bg2 border-[1.5px] border-black/[0.08] rounded-[18px] sm:rounded-[22px] p-6 sm:p-8 lg:p-11 relative overflow-hidden transition-all hover:border-brand-ind/22 hover:-translate-y-1 hover:shadow-[0_20px_54px_rgba(0,0,0,0.1)] h-full flex flex-col">
                   <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-brand-ind to-brand-cyan scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100" />
-                  <div className="font-mono text-[10px] tracking-[0.18em] text-lt-dim mb-4">{s.num} —</div>
                   <span className="text-[28px] sm:text-[34px] mb-3.5 block">{s.icon}</span>
                   <h3 className="font-heading font-bold text-[18px] sm:text-[21px] text-lt-text mb-3 tracking-[-0.3px]">{s.title}</h3>
                   <p className="text-[13.5px] sm:text-[15px] text-lt-muted leading-[1.75] mb-4">{s.desc}</p>
@@ -49,19 +62,39 @@ export default function ServicesPage() {
       {/* Pricing — dark */}
       <section className="py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 bg-dk-bg">
         <div className="max-w-[1280px] mx-auto">
-          <Reveal className="text-center mb-10 sm:mb-16">
-            <Eyebrow center>Pricing</Eyebrow>
-            <SectionHeading center>Simple, Fixed-Scope<br />Automation Packages</SectionHeading>
-            <p className="text-[15px] sm:text-[17px] text-dk-muted leading-[1.78] mx-auto max-w-[500px] text-center">No hourly surprises. Every package is fixed-scope with clear deliverables and a defined timeline.</p>
-          </Reveal>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-10 sm:mb-16">
+            <Reveal className="">
+              <Eyebrow>Pricing</Eyebrow>
+              <SectionHeading>Simple, Fixed-Scope<br />Automation Packages</SectionHeading>
+              <p className="text-[15px] sm:text-[17px] text-dk-muted leading-[1.78] max-w-[500px]">No hourly surprises. Every package is fixed-scope with clear deliverables and a defined timeline.</p>
+            </Reveal>
+            
+            <Reveal delay={0.1} className="flex-shrink-0">
+              <div className="flex bg-white/5 border border-white/10 rounded-full p-1 self-start md:self-auto">
+                <button 
+                  onClick={() => setCurrency('USD')} 
+                  className={`px-6 py-2 rounded-full font-mono text-[12px] tracking-wider uppercase font-bold transition-all duration-300 ${currency === 'USD' ? 'bg-brand-ind text-white shadow-lg shadow-brand-ind/20' : 'text-dk-muted hover:text-dk-text'}`}
+                >
+                  $ USD
+                </button>
+                <button 
+                  onClick={() => setCurrency('INR')} 
+                  className={`px-6 py-2 rounded-full font-mono text-[12px] tracking-wider uppercase font-bold transition-all duration-300 ${currency === 'INR' ? 'bg-brand-ind text-white shadow-lg shadow-brand-ind/20' : 'text-dk-muted hover:text-dk-text'}`}
+                >
+                  ₹ INR
+                </button>
+              </div>
+            </Reveal>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
             {PRICING_PLANS.map((p, i) => (
               <Reveal key={p.plan} delay={i * 0.12}>
                 <div className={`rounded-[18px] sm:rounded-[22px] p-6 sm:p-8 lg:p-10 relative overflow-hidden transition-all hover:-translate-y-1.5 hover:shadow-[0_22px_56px_rgba(0,0,0,0.45)] h-full flex flex-col ${p.featured?'border-[1.5px] border-brand-ind/40 bg-gradient-to-br from-brand-ind/8 to-brand-vio/5':'border border-white/[0.08] bg-dk-surf'}`}>
                   {p.featured && <div className="absolute top-4 right-4 sm:top-5 sm:right-5 font-mono text-[9px] tracking-[.15em] uppercase text-brand-cyan bg-brand-cyan/10 border border-brand-cyan/22 rounded-full px-2.5 py-1">Most Popular</div>}
                   <div className="font-mono text-[10px] tracking-[.18em] uppercase text-dk-muted mb-3">{p.plan}</div>
-                  <div className="font-heading font-extrabold text-[38px] sm:text-[44px] text-dk-text tracking-[-2px] mb-1">{p.price}</div>
-                  <div className={`font-mono text-[13px] font-semibold mb-1 ${p.featured?'text-brand-cyan':'text-brand-ind2'}`}>{p.inr}{p.period && <span className="text-[10px] font-normal text-dk-muted ml-1">{p.period}</span>}</div>
+                  <div className="font-heading font-extrabold text-[38px] sm:text-[44px] text-dk-text tracking-[-2px] mb-1">
+                    {p.prices[currency]}
+                  </div>
                   <p className="text-[13px] sm:text-[14px] text-dk-muted leading-[1.62] mb-6">{p.desc}</p>
                   <ul className="flex-1 space-y-0 mb-7">
                     {p.features.map(f => (
@@ -78,7 +111,7 @@ export default function ServicesPage() {
               </Reveal>
             ))}
           </div>
-          <p className="text-center font-mono text-[11px] text-dk-dim tracking-[.08em] mt-7">* INR prices approximate at ₹83.5 / $1 · Prices exclusive of GST</p>
+          <p className="text-center font-mono text-[11px] text-dk-dim tracking-[.08em] mt-7">* Prices exclusive of GST · {currency === 'INR' ? 'Billed in INR' : 'Billed in USD at current exchange rate'}</p>
         </div>
       </section>
     </>

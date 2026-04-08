@@ -106,7 +106,10 @@ export const TESTIMONIALS = [
 // ─── Pricing ───────────────────────────────────
 export const PRICING_PLANS = [
   {
-    plan: 'Starter', price: '₹949', inr: '₹11,388', period: '/year', featured: false,
+    plan: 'Starter',
+    prices: { USD: '$ 11', INR: '₹ 949' },
+    period: '/year',
+    featured: false,
     desc: '2 weeks 2 automation workflows',
     features: [
       { text: 'Up to 3 automated workflows', ok: true },
@@ -118,7 +121,10 @@ export const PRICING_PLANS = [
     ],
   },
   {
-    plan: 'Professional', price: '₹2499', inr: '₹29,988', period: '/year', featured: true,
+    plan: 'Professional',
+    prices: { USD: '$ 27', INR: '₹ 2,499' },
+    period: '/year',
+    featured: true,
     desc: '4 weeks 10 Automation workflows',
     features: [
       { text: 'Up to 10 automated workflows', ok: true },
@@ -130,7 +136,10 @@ export const PRICING_PLANS = [
     ],
   },
   {
-    plan: 'Enterprise', price: 'Custom', inr: 'Tailored to scale', period: '', featured: false,
+    plan: 'Enterprise',
+    prices: { USD: 'Custom', INR: 'Custom' },
+    period: '',
+    featured: false,
     desc: 'For enterprises needing full-scale automation strategy and ongoing engineering.',
     features: [
       { text: 'Unlimited workflows', ok: true },

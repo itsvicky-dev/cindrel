@@ -34,7 +34,7 @@ export function Eyebrow({ children, center = false }: { children: ReactNode; cen
   return (
     <div className={cn('inline-flex items-center gap-2.5 mb-4', center && 'justify-center')}>
       <span className="w-5 h-[1.5px] bg-brand-ind opacity-70" />
-      <span className="font-satoshi font-bold text-[11px] tracking-[0.18em] uppercase text-brand-ind">{children}</span>
+      <span className="font-dm font-[1000] text-[14px] tracking-[0.18em] uppercase text-brand-ind">{children}</span>
       {center && <span className="w-5 h-[1.5px] bg-brand-ind opacity-70" />}
     </div>
   )
